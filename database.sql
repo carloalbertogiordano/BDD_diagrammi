@@ -227,6 +227,36 @@ insert into Visita values (24, "A3", '2020-07-23 16:00:00', '2020-07-23 17:30:00
 insert into Visita values (2, "A3", '2020-08-23 16:00:00', '2020-08-23 16:00:00');
 insert into Visita values (5, "A3", '2020-07-23 16:00:00', '2020-07-23 16:00:00');
 
+#Pittori
+insert into Artista values (1, "Picasso", "Spagna", '1881-10-25', '1998-10-18');
+insert into Artista values (2, "Leonardo Da Vinci", "Italia", '1452-04-15', '1519-05-2');
+insert into Artista values (3, "Michelangelo", "Italia", '1475-03-06', '1564-02-18');
+insert into Artista values (4, "Van Gogh", "Paesi Bassi", '1853-03-30', '1890-07-29');
+insert into Artista values (5, "Rembrandt", "Olanda", '1606-07-15', '1669-10-04');
+insert into Artista values (6, "Monet", "Francia", '1840-11-14', '1926-12-05');
+insert into Artista values (7, "Dalì", "Spagna", '1904-05-11', '1989-01-23');
+insert into Artista values (8, "Cezanne", "Francia", '1839-01-19', '1906-12-22');
+insert into Artista values (9, "Goya", "Spagna", '1746-03-30', '1828-04-16');
+insert into Artista values (10, "Renoir", "Francia", '1841-02-25', '1919-12-03');
+insert into Artista values (11, "Hirst", "Inghilterra", '1965-05-07', null);
+insert into Artista values (12, "Koons", "USA", '1955-01-21', null);
+insert into Artista values (13, "Yayoi Kusama", "Giappone", '1929-03-22', null);
+insert into Artista values (14, "Sophie Call", "Francia", '1953-10-09', null);
+#Scultori
+insert into Artista values (15, "Rodin", "Francia", '1840-11-12', '1917-11-17');
+insert into Artista values (16, "Donatello", "Italia", '1380-01-01', '1466-12-13');
+insert into Artista values (17, "Canova", "Italia", '1757-11-01', '1822-08-13');
+insert into Artista values (18, "Ghiberti", "Italia", '1378-01-01', '1455-12-01');
+insert into Artista values (19, "Duchamp", "Francia", '1887-07-28', '1968-10-02');
+insert into Artista values (20, "Andy Warhol", "USA", '1928-10-06', '1987-02-22');
+insert into Artista values (21, "Brunelleschi", "Italia", '1377-01-01', '1446-04-15');
+
+#architetto
+insert into Artista values (22, "Eiffelle", "Francia", '1832-12-15', '1923-12-27');
+insert into Artista values (23, "Renzo Piano", "Italia", '1937-09-14', null);
+#fotografo
+insert into Artista values (24, "David Bailey", "Inghilterra", '1938-01-02', null);
+
 
 
 
