@@ -1,0 +1,21 @@
+Cliente (Id, nome, cognome, ddnascita)
+
+Museo (Codice, nome, orarioApertura, orarioChiusura, via, CAP, provincia, numeroVisite)
+
+Visita (Cliente, Museo, dataOraIngresso, dataOraUscita)
+
+Artista (id, nome, ddnascita, nazionalità, ddmorte*)
+
+Dipinto (nome, numero, altezza, larghezza, profondità, quotazione, genere, dataCreazione, tecnica, Artista)
+
+Scultura (nome, numero, altezza, larghezza, profondità, quotazione, genere, dataCreazione, peso, Artista)
+
+Altro (nome, numero, altezza, larghezza, profondità, quotazione, genere, dataCreazione, descrizione, Artista)
+
+Mostra (Museo, Opera, dataOraInizio, dataOraFine)
+
+Materiale (idMateriale, nome)
+
+Comporre (Scultura, Materiale)
+
+La chiave esterna Opera si riferisce alla chiave primaria “nome, cognome” delle tabelle dipinto, scultura e altro, in base alla tipologia di opera che sarà presente all’interno della mostra. 
