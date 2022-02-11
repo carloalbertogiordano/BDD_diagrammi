@@ -75,7 +75,7 @@ create table Materiali (
 );
 
 create table Altro (
-	nome varchar (40) NOT NULL,
+	nome varchar (70) NOT NULL,
     numero int NOT NULL,
     altezza float NOT NULL,
     larghezza float NOT NULL,
