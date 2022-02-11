@@ -305,7 +305,15 @@ insert into Altro values ("Progetti ponte Dom Luís I", 2, 250, 150, 0.28, 62, "
 insert into Altro values ("Fontana", 12, 61, 48, 38, 2000, "Moderno", 1917, "Il significato concettuale ermetico di Fontana l'ha resa probabilmente il ready-made più famoso di Duchamp", 19);
 
 
-
+insert into Scultura VALUES ("David di Michelangelo", 1, 517, 199, 199, 400000000, "classico", 1504, 5000, 23);
+insert into Scultura VALUES ("Apollo e Dafne", 1, 243, 170, 80, 20000000, "classico", 1625, 800, 22);
+insert into Scultura VALUES ("Il David", 1, 158, 40, 40, 7000000, "naturalistico", 1440, 400, 16);
+insert into Scultura VALUES ("Arca di san Zanobi", 1, 85, 193, 50, 100000, "classico", 1442, 1000, 18);
+insert into Scultura VALUES ("Crocifisso", 1, 170, 120, 40, 200000, "esistenziale", 1415, 200, 21);
+insert into Scultura VALUES ("Il pensatore", 2, 200, 130, 140, 100000, "romantico", 1902, 900, 15);
+insert into Scultura VALUES ("Ballon dog", 15, 300, 100, 300, 300000, "contemporaneo", 2010, 700, 17);
+insert into Scultura VALUES ("Baldacchino di san Pietro", 1, 3000, 400, 400, 50000000, "barocco", 1633, 25000, 22);
+insert into Scultura VALUES ("La pietà", 5, 174, 195, 69, 1000000000, "rinascimentale", 1499, 3000, 23);
 
 
 
