@@ -343,6 +343,21 @@ insert into MostraDipinto values ("A4", "Impressione, levar del sole", 1, '9:30:
 insert into MostraDipinto values ("A4", "Giraffa in fiamme", 5, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
 insert into MostraDipinto values ("A4", "Natura morta con mele e arance", 2, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
 
+insert into MostraAltro values ("A1", "Progetti dela torre Eiffelle", 134, '9:00:00 2022-02-1', '20:00:00 2022-02-03');
+insert into MostraAltro values ("A1", "Progetti di costruzione di Nemo", 20, '9:00:00 2022-02-1', '20:00:00 2022-02-03');
+insert into MostraAltro values ("A1", "Box of Pin Ups", 1, '9:00:00 2022-02-1', '20:00:00 2022-02-03');
+insert into MostraAltro values ("A2", "Goodbye Baby & Amen", 1000, '12:00:00 2022-01-20', '13:50:00 2022-01-22');
+insert into MostraAltro values ("A2", "Progetto costruzione Centro culturale Jean-Marie Tjibaou", 1, '12:00:00 2022-01-20', '13:50:00 2022-01-22');
+insert into MostraAltro values ("A2", "Progetti ristrutturazione porto antico di Genova", 3, '12:00:00 2022-01-20', '13:50:00 2022-01-22');
+insert into MostraAltro values ("A3", "Progetti ponte Dom Luís I", 2, '9:30:00 2018-08-21', '12:00:00 2018-08-25');
+insert into MostraAltro values ("A3", "Fontana", 12, '9:30:00 2018-08-21', '12:00:00 2018-08-25');
+insert into MostraAltro values ("A3", "Progetti ristrutturazione porto antico di Genova", 3, '9:30:00 2018-08-21', '12:00:00 2018-08-25');
+insert into MostraAltro values ("A4", "Progetti dela torre Eiffelle", 134, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
+insert into MostraAltro values ("A4", "Progetti di costruzione di Nemo", 20, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
+insert into MostraAltro values ("A4", "Goodbye Baby & Amen", 1000, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
+
+
+
 insert into Materiali values (1, "Bronzo");
 insert into Materiali values (2, "Gesso");
 insert into Materiali values (3, "Marmo");
