@@ -123,7 +123,7 @@ create table MostraAltro (
 );
 
 create table Comporre (
-	nomeScultura varchar (20) NOT NULL,
+	nomeScultura varchar (40) NOT NULL,
     numeroScultura int NOT NULL,
     ID_Materiale int NOT NULL,
 		FOREIGN KEY (nomeScultura, numeroScultura) REFERENCES Scultura(nome, numero),
@@ -361,6 +361,8 @@ insert into Materiali values (2, "Gesso");
 insert into Materiali values (3, "Marmo");
 insert into Materiali values (4, "Allluminio");
 insert into Materiali values (5, "Vetro Resina");
+insert into Materiali values (6, "Legno");
+
 
 insert into Comporre values("David di Michelangelo", 1, 3);
 insert into Comporre values("Apollo e Dafne", 1, 3);
@@ -371,7 +373,6 @@ insert into Comporre values("Crocifisso", 1, 6);
 insert into Comporre values("Il pensatore", 2, 1);
 insert into Comporre values("Ballon dog", 15, 5);
 insert into Comporre values("Ballon dog", 15, 4);
-insert into Comporre values("Baldacchino di san Petro", 1, 3);
-insert into Comporre values("Baldacchino di san Petro", 1, 7);
+insert into Comporre values("Baldacchino di san Pietro", 1, 3);
 insert into Comporre values("La pietà", 5, 3);
 
