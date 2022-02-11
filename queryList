@@ -1,0 +1,8 @@
+1) Elencare, ordinatamente in base alla data di creazione, tutti i dipinti che sono stati creati da Dalì e tutti i dipindi creati da Botticelli. (Nome, Numero, Data di creazione)
+2) Elencare tutti i clienti che hanno visitato il "museo bellissimo" (Nome, Cognome)
+3) Mostrare la somma delle quotazioni di tutti i dipinti
+4) Mostrare la somma delle quotazioni dei quadri presenti ad una mostra
+5) Mostrare la somma delle quotazioni delle sculture appartenenti al genere classico con una quotazione superiore a 10.000 euro
+6) Elencare il genere per il quale la somma delle quotazioni delle sculture che gli appartengono è la più alta
+7) Elencare tutti i dipinti che sono stato esposti al "museo di arte" ma non al "museo delle opere"
+8) Selezionare i clienti che hanno visitato tutti i musei
