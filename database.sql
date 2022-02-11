@@ -34,35 +34,35 @@ create table Visita (
 create table Artista (
 	ID int PRIMARY KEY,
     nome varchar (30) NOT NULL,
+	nazionalità varchar (20) NOT NULL,
 	ddnascita date NOT NULL,
-    nazionalità varchar (20) NOT NULL,
-    ddmorte int
+    ddmorte date
 );
 
 create table Dipinto (
-	nome varchar (20) NOT NULL,
+	nome varchar (41) NOT NULL,
     numero int NOT NULL,
     altezza float NOT NULL,
     larghezza float NOT NULL,
     profondità float NOT NULL,
     quotazione long NOT NULL,
-    genere varchar (20) NOT NULL,
-    dataCreazione date NOT NULL,
-    tecnica varchar (15) NOT NULL,
+    genere varchar (30) NOT NULL,
+    dataCreazione int NOT NULL,
+    tecnica varchar (25) NOT NULL,
     ID_Artista int NOT NULL,
 		FOREIGN KEY (ID_Artista) REFERENCES Artista(ID),
     PRIMARY KEY(nome, numero)
 );
 
 create table Scultura (
-	nome varchar (20) NOT NULL,
+	nome varchar (40) NOT NULL,
     numero int NOT NULL,
     altezza float NOT NULL,
     larghezza float NOT NULL,
     profondità float NOT NULL,
     quotazione long NOT NULL,
-    genere varchar (20) NOT NULL,
-    dataCreazione date NOT NULL,
+    genere varchar (30) NOT NULL,
+    dataCreazione int NOT NULL,
 	peso int NOT NULL,
     ID_Artista int NOT NULL,
 		FOREIGN KEY (ID_Artista) REFERENCES Artista(ID),
@@ -75,14 +75,14 @@ create table Materiali (
 );
 
 create table Altro (
-	nome varchar (20) NOT NULL,
+	nome varchar (40) NOT NULL,
     numero int NOT NULL,
     altezza float NOT NULL,
     larghezza float NOT NULL,
     profondità float NOT NULL,
     quotazione long NOT NULL,
-    genere varchar (20) NOT NULL,
-    dataCreazione date NOT NULL,
+    genere varchar (30) NOT NULL,
+    dataCreazione int NOT NULL,
 	descrizione varchar (1000) NOT NULL,
     ID_Artista int NOT NULL,
 		FOREIGN KEY (ID_Artista) REFERENCES Artista(ID),
@@ -226,6 +226,17 @@ insert into Visita values (19, "A2", '2012-05-02 17:33:00', '2012-05-02 18:30:00
 insert into Visita values (24, "A3", '2020-07-23 16:00:00', '2020-07-23 17:30:00');
 insert into Visita values (2, "A3", '2020-08-23 16:00:00', '2020-08-23 16:00:00');
 insert into Visita values (5, "A3", '2020-07-23 16:00:00', '2020-07-23 16:00:00');
+insert into Visita values (2, "A2", '2015-12-16 10:30:00', '2015-12-16 12:30:00');
+insert into Visita values (17, "A1", '2018-11-08 17:30:00', '2018-11-08 18:29:00');
+insert into Visita values (16, "A4", '2019-12-05 15:50:00', '2019-12-05 16:50:00');
+insert into Visita values (33, "A3", '2020-01-12 11:00:00', '2020-01-12 13:00:00');
+insert into Visita values (15, "A1", '2013-05-02 12:15:00', '2013-05-02 12:15:00');
+insert into Visita values (21, "A2", '2015-12-12 11:30:00', '2015-12-12 11:30:00');
+insert into Visita values (9, "A4", '2022-02-11 20:00:00', '2023-02-11 22:00:00');
+insert into Visita values (35, "A1", '2019-01-21 08:40:00', '2019-01-21 15:50:00');
+insert into Visita values (7, "A4", '2022-01-11 20:40:00', '2022-01-11 21:40:00');
+insert into Visita values (20, "A3", '2019-08-23 11:00:00', '2019-08-23 12:00:00');
+
 
 #Pittori
 insert into Artista values (1, "Picasso", "Spagna", '1881-10-25', '1998-10-18');
@@ -239,13 +250,13 @@ insert into Artista values (8, "Cezanne", "Francia", '1839-01-19', '1906-12-22')
 insert into Artista values (9, "Goya", "Spagna", '1746-03-30', '1828-04-16');
 insert into Artista values (10, "Renoir", "Francia", '1841-02-25', '1919-12-03');
 insert into Artista values (11, "Hirst", "Inghilterra", '1965-05-07', null);
-insert into Artista values (12, "Koons", "USA", '1955-01-21', null);
+insert into Artista values (12, "Canova", "Italia", '1757-11-01', '1822-08-13');
 insert into Artista values (13, "Yayoi Kusama", "Giappone", '1929-03-22', null);
-insert into Artista values (14, "Sophie Call", "Francia", '1953-10-09', null);
+insert into Artista values (14, "Botticelli", "Italia", '1445-03-01', '1510-05-17');
 #Scultori
 insert into Artista values (15, "Rodin", "Francia", '1840-11-12', '1917-11-17');
 insert into Artista values (16, "Donatello", "Italia", '1380-01-01', '1466-12-13');
-insert into Artista values (17, "Canova", "Italia", '1757-11-01', '1822-08-13');
+insert into Artista values (17, "Koons", "USA", '1955-01-21', null);
 insert into Artista values (18, "Ghiberti", "Italia", '1378-01-01', '1455-12-01');
 insert into Artista values (19, "Duchamp", "Francia", '1887-07-28', '1968-10-02');
 insert into Artista values (20, "Andy Warhol", "USA", '1928-10-06', '1987-02-22');
@@ -256,6 +267,43 @@ insert into Artista values (22, "Eiffelle", "Francia", '1832-12-15', '1923-12-27
 insert into Artista values (23, "Renzo Piano", "Italia", '1937-09-14', null);
 #fotografo
 insert into Artista values (24, "David Bailey", "Inghilterra", '1938-01-02', null);
+
+#fare 24 dipinti ##Dipinto (nome, numero, altezza, larghezza, profondità, quotazione, genere, dataCreazione, tecnica, Artista)
+
+insert into Dipinto values ("Ragazzo con pipa", 1, 100, 81, 5, 104000000, "Periodo rosa", 1905, "Olio su tela",  1);
+insert into Dipinto values ("Gioconda", 2, 77, 53, 10, 50000000000, "Rinascimentale", 1503, "Olio su tavola di pioppo",  2);
+insert into Dipinto values ("David De Rohan", 3, 17, 7, 0, 100000, "Rinascimentale", 1502, "Appunti",  3);
+insert into Dipinto values ("Notte stellata", 4, 74, 92, 7, 900000000, "Pittura paesaggistica", 1889, "Oleografia su tela",  4);
+insert into Dipinto values ("Cristo nella tempesta sul mare di Galilea", 5, 160, 128, 20, 700000, "Periodo d'oro Olandese", 1633, "Olio su tela",  5);
+insert into Dipinto values ("La Grenouillère", 6, 66, 81, 12, 400000, "Impressionismo", 1869, "Olio su tela",  6);
+insert into Dipinto values ("La persistenza della memoria", 7, 24, 33, 3, 100000000, "Surrealismo", 1931, "Olio su tela",  7);
+insert into Dipinto values ("I giocatori di carte", 8, 47, 57, 8, 250000000, "post-impressionismo", 1890, "Olio su tela",  8);
+insert into Dipinto values ("Saturno che divora i suoi figli", 9, 146, 83, 24, 40000000, "Uscita dal neoclassicismo", 1821, "Olio su tela",  9);
+insert into Dipinto values ("Bal au moulin de la Galette", 10, 131, 175, 22, 20000000, "Impressionismo", 1876, "Olio su tela",  10);
+insert into Dipinto values ("Flumequine", 11, 140, 110, 0, 600000, "Astrattismo", '2007', "Digitale",  11);
+insert into Dipinto values ("Venere con Amore in fasce", 12, 132, 82, 18, 700000, "Neoclassicismo", 1789, "Olio su tela", 12);
+insert into Dipinto values ("Butterfly", 13, 38, 45, 8, 11100, "Pittura animale", 1988, "Concettuale",  13);
+insert into Dipinto values ("Primavera", 14, 203, 314, 37, 50000000000, "Tempera su tavola", 1477, "Rinascimentale",  14);
+insert into Dipinto values ("Nascita di venere", 15, 172, 278, 28,55000000,"tempera su tela", 1485, "Rinascimentale",  14);
+insert into Dipinto values ("Guernica", 16, 349, 776, 50, 140000, "Olio su tela", 1937, "Cubismo",  1);
+insert into Dipinto values ("Salvator mundi", 17, 65, 45, 15, 450000000, "Olio su tavola", 1505, "Rinascimentale",  2);
+insert into Dipinto values ("Tormento di sant'Antonio", 18, 47, 35, 13, 6000000, "Olio e tempera su tavola", 1487, "Rinascimentale",  3);
+insert into Dipinto values ("Mangiatori di patate", 19, 82, 114, 14, 700000, "Olio su tela", 1885, "Realismo",  4);
+insert into Dipinto values ("Impressione, levar del sole", 20, 48, 63, 14, 1000000, "Olio su tela", 1872, "Impressionismo",  6);
+insert into Dipinto values ("Giraffa in fiamme", 21, 35, 27, 9, 800000, "Olio su tavola", 1937, "Surrealismo",  7);
+insert into Dipinto values ("Natura morta con mele e arance", 22, 74, 93, 10, 500000, "Olio su tela", '1900', "Post-impressionismo",  "8");
+insert into Dipinto values ("il 3 maggio 1808", 23, 268, 347, 38, 2000000, "Colore ad olio", '1814', "Pittura storica",  "9");
+insert into Dipinto values ("La colazione dei canottieri", 24, 130, 173, 22, 600000, "olio su tela", '1880', "Impressionismo",  "10");
+
+#
+
+
+
+
+
+
+
+
 
 
 
