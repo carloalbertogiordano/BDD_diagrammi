@@ -23,12 +23,12 @@ create table Musei(
 
 create table Visita (
 	ID_Cliente int NOT NULL,
-    codice_Museo varchar (20) NOT NULL,
+    codiceMuseo varchar (20) NOT NULL,
     dataOraIngresso datetime NOT NULL,
     dataOraUscita datetime NOT NULL,
     FOREIGN KEY (ID_Cliente) REFERENCES Clienti(ID),
-    FOREIGN KEY (codice_Museo) REFERENCES Musei(codice),
-    PRIMARY KEY(ID_Cliente, codice_Museo, dataOraIngresso, dataOraUscita)
+    FOREIGN KEY (codiceMuseo) REFERENCES Musei(codice),
+    PRIMARY KEY(ID_Cliente, codiceMuseo, dataOraIngresso, dataOraUscita)
 );
 
 create table Artista (
