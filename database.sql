@@ -11,7 +11,7 @@ create table Clienti(
 );
 
 create table Musei(
-	codice varchar (20) PRIMARY KEY,
+	codice varchar (2) PRIMARY KEY,
     nome varchar (20) NOT NULL,
     orarioApertura time NOT NULL,
     orarioChiusura time NOT NULL,
@@ -40,7 +40,7 @@ create table Artista (
 );
 
 create table Dipinto (
-	nome varchar (41) NOT NULL,
+	nome varchar (50) NOT NULL,
     numero int NOT NULL,
     altezza float NOT NULL,
     larghezza float NOT NULL,
@@ -90,8 +90,8 @@ create table Altro (
 );
 
 create table MostraDipinto (
-	codiceMuseo varchar (20),
-	nomeDipinto varchar (20) NOT NULL,
+	codiceMuseo varchar (2),
+	nomeDipinto varchar (50) NOT NULL,
 	numeroDipinto int NOT NULL,
 	dataOraInizio datetime NOT NULL,
     dataOraFine datetime NOT NULL,
@@ -316,16 +316,16 @@ insert into Scultura VALUES ("La pietà", 5, 174, 195, 69, 1000000000, "rinascim
 insert into Scultura VALUES ("San Pietro", 1, 243, 120, 80, 100000, "classico", 1412, 2000, 21);
 insert into Scultura VALUES ("San Giorgio", 1, 209, 110, 75, 150000, "classico", 1418, 1700, 16);
 
-insert into MostraDipinto values ("A1", "Ragazzo con pipa", 1, '9:00:00 2022-02-1', '20:00:00 2022-02-03');
-insert into MostraDipinto values ("A1", "Ragazzo con pipa", 2, '9:00:00 2022-02-1', '20:00:00 2022-03-03');
-insert into MostraDipinto values ("A1", "Gioconda", 2, '9:00:00 2022-02-1', '20:00:00 2022-03-3');
-insert into MostraDipinto values ("A1", "David De Rohan", 5, '9:00:00 2022-02-1', '20:00:00 2022-02-03');
-insert into MostraDipinto values ("A1", "Notte stellata", 1, '9:00:00 2022-02-1', '20:00:00 2022-02-03');
-insert into MostraDipinto values ("A1", "Notte Stellata", 2, '12:00:00 2019-04-1', '18:30:00 2019-04-5');
-insert into MostraDipinto values ("A1", "Gioconda", 2, '12:00:00 2019-04-1', '18:30:00 2019-04-5');
-insert into MostraDipinto values ("A1", "Cristo nella tempesta sul mare di Galilea", 2, '12:00:00 2019-04-1', '18:30:00 2019-04-5');
-insert into MostraDipinto values ("A1", "La Grenouillère", 1, '12:00:00 2019-04-1', '18:30:00 2019-04-5');
-insert into MostraDipinto values ("A1", "La persistenza della memoria", 1, '12:00:00 2019-04-1', '18:30:00 2019-04-5');
+insert into MostraDipinto values ("A1", "Ragazzo con pipa", 1, '2022-02-01 9:00:00 ', '2022-02-03 20:00:00');
+insert into MostraDipinto values ("A1", "Ragazzo con pipa", 2, '2022-02-01 9:00:00', '2022-03-03 20:00:00');
+insert into MostraDipinto values ("A1", "Gioconda", 2, '2022-02-01 9:00:00', '2022-03-03 20:00:00');
+insert into MostraDipinto values ("A1", "David De Rohan", 5, '2022-02-01 9:00:00', '2022-03-03 20:00:00');
+insert into MostraDipinto values ("A1", "Notte stellata", 1, '2022-02-01 9:00:00', '2022-03-03 20:00:00');
+insert into MostraDipinto values ("A1", "Notte Stellata", 2, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
+insert into MostraDipinto values ("A1", "Gioconda", 2, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
+insert into MostraDipinto values ("A1", "Cristo nella tempesta sul mare di Galilea", 2, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
+insert into MostraDipinto values ("A1", "La Grenouillère", 1, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
+insert into MostraDipinto values ("A1", "La persistenza della memoria", 1, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
 insert into MostraDipinto values ("A2", "I giocatori di carte", 2, '12:00:00 2022-01-20', '13:50:00 2022-01-22');
 insert into MostraDipinto values ("A2", "Saturno che divora i suoi figli", 1, '12:00:00 2022-01-20', '13:50:00 2022-01-22');
 insert into MostraDipinto values ("A2", "Bal au moulin de la Galette", 1, '12:00:00 2022-01-20', '13:50:00 2022-01-22');
