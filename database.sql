@@ -364,6 +364,16 @@ insert into Materiali values (3, "Marmo");
 insert into Materiali values (4, "Allluminio");
 insert into Materiali values (5, "Vetro Resina");
 
-
-
+insert into Comporre values("David di Michelangelo", 1, 3);
+insert into Comporre values("Apollo e Dafne", 1, 3);
+insert into Comporre values("Il David", 1, 1);
+insert into Comporre values("Arca di san Zanobi", 1, 1);
+insert into Comporre values("Crocifisso", 1, 3);
+insert into Comporre values("Crocifisso", 1, 6);
+insert into Comporre values("Il pensatore", 2, 1);
+insert into Comporre values("Ballon dog", 15, 5);
+insert into Comporre values("Ballon dog", 15, 4);
+insert into Comporre values("Baldacchino di san Petro", 1, 3);
+insert into Comporre values("Baldacchino di san Petro", 1, 7);
+insert into Comporre values("La pietà", 5, 3);
 
