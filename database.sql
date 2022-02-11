@@ -313,6 +313,8 @@ insert into Scultura VALUES ("Il pensatore", 2, 200, 130, 140, 100000, "romantic
 insert into Scultura VALUES ("Ballon dog", 15, 300, 100, 300, 300000, "contemporaneo", 2010, 700, 17);
 insert into Scultura VALUES ("Baldacchino di san Pietro", 1, 3000, 400, 400, 50000000, "barocco", 1633, 25000, 22);
 insert into Scultura VALUES ("La pietà", 5, 174, 195, 69, 1000000000, "rinascimentale", 1499, 3000, 23);
+insert into Scultura VALUES ("San Pietro", 1, 243, 120, 80, 100000, "classico", 1412, 2000, 21);
+insert into Scultura VALUES ("San Giorgio", 1, 209, 110, 75, 150000, "classico", 1418, 1700, 16);
 
 insert into MostraDipinto values ("A1", "Ragazzo con pipa", 1, '9:00:00 2022-02-1', '20:00:00 2022-02-03');
 insert into MostraDipinto values ("A1", "Ragazzo con pipa", 2, '9:00:00 2022-02-1', '20:00:00 2022-03-03');
