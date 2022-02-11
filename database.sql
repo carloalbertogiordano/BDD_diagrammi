@@ -304,7 +304,6 @@ insert into Altro values ("Progetti ristrutturazione porto antico di Genova", 3,
 insert into Altro values ("Progetti ponte Dom Luís I", 2, 250, 150, 0.28, 62, "Ponte", 1869, "Stampa dei progetti originali", 22);
 insert into Altro values ("Fontana", 12, 61, 48, 38, 2000, "Moderno", 1917, "Il significato concettuale ermetico di Fontana l'ha resa probabilmente il ready-made più famoso di Duchamp", 19);
 
-
 insert into Scultura VALUES ("David di Michelangelo", 1, 517, 199, 199, 400000000, "classico", 1504, 5000, 23);
 insert into Scultura VALUES ("Apollo e Dafne", 1, 243, 170, 80, 20000000, "classico", 1625, 800, 22);
 insert into Scultura VALUES ("Il David", 1, 158, 40, 40, 7000000, "naturalistico", 1440, 400, 16);
@@ -315,8 +314,32 @@ insert into Scultura VALUES ("Ballon dog", 15, 300, 100, 300, 300000, "contempor
 insert into Scultura VALUES ("Baldacchino di san Pietro", 1, 3000, 400, 400, 50000000, "barocco", 1633, 25000, 22);
 insert into Scultura VALUES ("La pietà", 5, 174, 195, 69, 1000000000, "rinascimentale", 1499, 3000, 23);
 
-
-
+insert into MostraDipinto values ("A1", "Ragazzo con pipa", 1, '9:00:00 2022-02-1', '20:00:00 2022-02-03');
+insert into MostraDipinto values ("A1", "Ragazzo con pipa", 2, '9:00:00 2022-02-1', '20:00:00 2022-03-03');
+insert into MostraDipinto values ("A1", "Gioconda", 2, '9:00:00 2022-02-1', '20:00:00 2022-03-3');
+insert into MostraDipinto values ("A1", "David De Rohan", 5, '9:00:00 2022-02-1', '20:00:00 2022-02-03');
+insert into MostraDipinto values ("A1", "Notte stellata", 1, '9:00:00 2022-02-1', '20:00:00 2022-02-03');
+insert into MostraDipinto values ("A1", "Notte Stellata", 2, '12:00:00 2019-04-1', '18:30:00 2019-04-5');
+insert into MostraDipinto values ("A1", "Gioconda", 2, '12:00:00 2019-04-1', '18:30:00 2019-04-5');
+insert into MostraDipinto values ("A1", "Cristo nella tempesta sul mare di Galilea", 2, '12:00:00 2019-04-1', '18:30:00 2019-04-5');
+insert into MostraDipinto values ("A1", "La Grenouillère", 1, '12:00:00 2019-04-1', '18:30:00 2019-04-5');
+insert into MostraDipinto values ("A1", "La persistenza della memoria", 1, '12:00:00 2019-04-1', '18:30:00 2019-04-5');
+insert into MostraDipinto values ("A2", "I giocatori di carte", 2, '12:00:00 2022-01-20', '13:50:00 2022-01-22');
+insert into MostraDipinto values ("A2", "Saturno che divora i suoi figli", 1, '12:00:00 2022-01-20', '13:50:00 2022-01-22');
+insert into MostraDipinto values ("A2", "Bal au moulin de la Galette", 1, '12:00:00 2022-01-20', '13:50:00 2022-01-22');
+insert into MostraDipinto values ("A2", "Flumequine", 14, '12:00:00 2022-01-20', '13:50:00 2022-01-22');
+insert into MostraDipinto values ("A2", "Venere con Amore in fasce", 3, '12:00:00 2022-01-20', '13:50:00 2022-01-22');
+insert into MostraDipinto values ("A3", "Butterfly", 1, '9:30:00 2018-08-21', '12:00:00 2018-08-25');
+insert into MostraDipinto values ("A3", "Primavera", 1, '9:30:00 2018-08-21', '12:00:00 2018-08-25');
+insert into MostraDipinto values ("A3", "Primavera", 3, '9:30:00 2018-08-21', '12:00:00 2018-08-25');
+insert into MostraDipinto values ("A3", "Nascita di venere", 2, '9:30:00 2018-08-21', '12:00:00 2018-08-25');
+insert into MostraDipinto values ("A3", "Guernica", 1, '9:30:00 2018-08-21', '12:00:00 2018-08-25');
+insert into MostraDipinto values ("A4", "Salvator mundi", 1, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
+insert into MostraDipinto values ("A4", "Tormento di sant'Antonio", 1, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
+insert into MostraDipinto values ("A4", "Mangiatori di patate", 2, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
+insert into MostraDipinto values ("A4", "Impressione, levar del sole", 1, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
+insert into MostraDipinto values ("A4", "Giraffa in fiamme", 5, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
+insert into MostraDipinto values ("A4", "Natura morta con mele e arance", 2, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
 
 
 
