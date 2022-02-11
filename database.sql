@@ -34,8 +34,8 @@ create table Visita (
 create table Artista (
 	ID int PRIMARY KEY,
     nome varchar (30) NOT NULL,
-	nazionalità varchar (20) NOT NULL,
-	ddnascita date NOT NULL,
+    nazionalità varchar (20) NOT NULL,
+    ddnascita date NOT NULL,
     ddmorte date
 );
 
@@ -63,7 +63,7 @@ create table Scultura (
     quotazione long NOT NULL,
     genere varchar (30) NOT NULL,
     dataCreazione int NOT NULL,
-	peso int NOT NULL,
+    peso int NOT NULL,
     ID_Artista int NOT NULL,
 		FOREIGN KEY (ID_Artista) REFERENCES Artista(ID),
     PRIMARY KEY(nome, numero)
@@ -83,7 +83,7 @@ create table Altro (
     quotazione long NOT NULL,
     genere varchar (30) NOT NULL,
     dataCreazione int NOT NULL,
-	descrizione varchar (1000) NOT NULL,
+    descrizione varchar (1000) NOT NULL,
     ID_Artista int NOT NULL,
 		FOREIGN KEY (ID_Artista) REFERENCES Artista(ID),
     PRIMARY KEY(nome, numero)
@@ -125,7 +125,7 @@ create table MostraAltro (
 create table Comporre (
 	nomeScultura varchar (20) NOT NULL,
     numeroScultura int NOT NULL,
-	ID_Materiale int NOT NULL,
+    ID_Materiale int NOT NULL,
 		FOREIGN KEY (nomeScultura, numeroScultura) REFERENCES Scultura(nome, numero),
 		FOREIGN KEY (ID_Materiale) REFERENCES Materiali(ID),
 	PRIMARY KEY (nomeScultura, numeroScultura, ID_Materiale)
@@ -236,8 +236,6 @@ insert into Visita values (9, "A4", '2022-02-11 20:00:00', '2023-02-11 22:00:00'
 insert into Visita values (35, "A1", '2019-01-21 08:40:00', '2019-01-21 15:50:00');
 insert into Visita values (7, "A4", '2022-01-11 20:40:00', '2022-01-11 21:40:00');
 insert into Visita values (20, "A3", '2019-08-23 11:00:00', '2019-08-23 12:00:00');
-
-
 #Pittori
 insert into Artista values (1, "Picasso", "Spagna", '1881-10-25', '1998-10-18');
 insert into Artista values (2, "Leonardo Da Vinci", "Italia", '1452-04-15', '1519-05-2');
@@ -261,14 +259,11 @@ insert into Artista values (18, "Ghiberti", "Italia", '1378-01-01', '1455-12-01'
 insert into Artista values (19, "Duchamp", "Francia", '1887-07-28', '1968-10-02');
 insert into Artista values (20, "Andy Warhol", "USA", '1928-10-06', '1987-02-22');
 insert into Artista values (21, "Brunelleschi", "Italia", '1377-01-01', '1446-04-15');
-
 #architetto
 insert into Artista values (22, "Eiffelle", "Francia", '1832-12-15', '1923-12-27');
 insert into Artista values (23, "Renzo Piano", "Italia", '1937-09-14', null);
 #fotografo
 insert into Artista values (24, "David Bailey", "Inghilterra", '1938-01-02', null);
-
-#fare 24 dipinti ##Dipinto (nome, numero, altezza, larghezza, profondità, quotazione, genere, dataCreazione, tecnica, Artista)
 
 insert into Dipinto values ("Ragazzo con pipa", 1, 100, 81, 5, 104000000, "Periodo rosa", 1905, "Olio su tela",  1);
 insert into Dipinto values ("Gioconda", 2, 77, 53, 10, 50000000000, "Rinascimentale", 1503, "Olio su tavola di pioppo",  2);
@@ -295,7 +290,15 @@ insert into Dipinto values ("Natura morta con mele e arance", 22, 74, 93, 10, 50
 insert into Dipinto values ("il 3 maggio 1808", 23, 268, 347, 38, 2000000, "Colore ad olio", '1814', "Pittura storica",  "9");
 insert into Dipinto values ("La colazione dei canottieri", 24, 130, 173, 22, 600000, "olio su tela", '1880', "Impressionismo",  "10");
 
-#
+insert into Altro values ("Progetti dela torre Eiffelle", 134, 200, 100, 0.3, 10, "Monumento", 1887, "Copia del progetto di costruzione della torre", 22);
+insert into Altro values ("Progetti di costruzione di Nemo", 20, 100, 50, 0.27, 50, "Museo", 1997, "Ristampa dei progetti per la costruzione del museo NEMO di Amsterdam", 23);
+insert into Altro values ("Box of Pin Ups", 1, 30, 30, 2, 50, "Fotogrefia", 1965, "Copertina vinile", 24);
+insert into Altro values ("Goodbye Baby & Amen", 1000, 15, 5, 0.15, 10, "Fotografia", 1970, "Ristampa copertina libro", 24);
+insert into Altro values ("Progetto costruzione Centro culturale Jean-Marie Tjibaou", 1, 500, 250, 0.12 , 2000, "Centro culturale", 1995, "Progetti originali", 23);
+insert into Altro values ("Progetti ristrutturazione porto antico di Genova", 3, 300, 300, 0.3, 50, "Porto", 1988, "Ristampa dei documenti relativi alla ristrutturazione", 23);
+insert into Altro values ("Progetti ponte Dom Luís I", 2, 250, 150, 0.28, 62, "Ponte", 1869, "Stampa dei progetti originali", 22);
+insert into Altro values ("Fontana", 12, 61, 48, 38, 2000, "Moderno", 1917, "Il significato concettuale ermetico di Fontana l'ha resa probabilmente il ready-made più famoso di Duchamp", 19);
+
 
 
 
