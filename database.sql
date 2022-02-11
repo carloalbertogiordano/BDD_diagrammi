@@ -55,7 +55,7 @@ create table Dipinto (
 );
 
 create table Scultura (
-	nome varchar (40) NOT NULL,
+	nome varchar (50) NOT NULL,
     numero int NOT NULL,
     altezza float NOT NULL,
     larghezza float NOT NULL,
@@ -101,8 +101,8 @@ create table MostraDipinto (
 );
 
 create table MostraScultura (
-	codiceMuseo varchar (20),
-	nomeScultura varchar (20) NOT NULL,
+	codiceMuseo varchar (2),
+	nomeScultura varchar (50) NOT NULL,
 	numeroScultura int NOT NULL,
 	dataOraInizio datetime NOT NULL,
     dataOraFine datetime NOT NULL,
@@ -112,8 +112,8 @@ create table MostraScultura (
 );
 
 create table MostraAltro (
-	codiceMuseo varchar (20),
-	nomeAltro varchar (20) NOT NULL,
+	codiceMuseo varchar (2),
+	nomeAltro varchar (50) NOT NULL,
 	numeroAltro int NOT NULL,
 	dataOraInizio datetime NOT NULL,
     dataOraFine datetime NOT NULL,
