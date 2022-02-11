@@ -343,9 +343,11 @@ insert into MostraDipinto values ("A4", "Impressione, levar del sole", 1, '9:30:
 insert into MostraDipinto values ("A4", "Giraffa in fiamme", 5, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
 insert into MostraDipinto values ("A4", "Natura morta con mele e arance", 2, '9:30:00 2023-04-10', '21:30:00 2023-04-10');
 
-
-
-
+insert into Materiali values (1, "Bronzo");
+insert into Materiali values (2, "Gesso");
+insert into Materiali values (3, "Marmo");
+insert into Materiali values (4, "Allluminio");
+insert into Materiali values (5, "Vetro Resina");
 
 
 
