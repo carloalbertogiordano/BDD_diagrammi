@@ -113,7 +113,7 @@ create table MostraScultura (
 
 create table MostraAltro (
 	codiceMuseo varchar (2),
-	nomeAltro varchar (50) NOT NULL,
+	nomeAltro varchar (70) NOT NULL,
 	numeroAltro int NOT NULL,
 	dataOraInizio datetime NOT NULL,
     dataOraFine datetime NOT NULL,
@@ -326,25 +326,35 @@ insert into MostraDipinto values ("A1", "Gioconda", 2, '2019-04-01 12:00:00', '2
 insert into MostraDipinto values ("A1", "Cristo nella tempesta sul mare di Galilea", 2, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
 insert into MostraDipinto values ("A1", "La Grenouillère", 1, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
 insert into MostraDipinto values ("A1", "La persistenza della memoria", 1, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
-
 insert into MostraDipinto values ("A2", "I giocatori di carte", 2, '2022-01-20 12:00:00', '2022-01-22 13:50:00');
 insert into MostraDipinto values ("A2", "Saturno che divora i suoi figli", 1, '2022-01-20 12:00:00', '2022-01-22 13:50:00');
 insert into MostraDipinto values ("A2", "Bal au moulin de la Galette", 1, '2022-01-20 12:00:00', '2022-01-22 13:50:00');
 insert into MostraDipinto values ("A2", "Flumequine", 14, '2022-01-20 12:00:00', '2022-01-22 13:50:00');
 insert into MostraDipinto values ("A2", "Venere con Amore in fasce", 3, '2022-01-20 12:00:00', '2022-01-22 13:50:00');
-
 insert into MostraDipinto values ("A3", "Butterfly", 1, '2018-08-21 9:30:00', '2018-08-25 12:00:00');
 insert into MostraDipinto values ("A3", "Primavera", 1, '2018-08-21 9:30:00', '2018-08-25 12:00:00');
 insert into MostraDipinto values ("A3", "Primavera", 3, '2018-08-21 9:30:00', '2018-08-25 12:00:00');
 insert into MostraDipinto values ("A3", "Nascita di venere", 2, '2018-08-21 9:30:00', '2018-08-25 12:00:00');
 insert into MostraDipinto values ("A3", "Guernica", 1, '2018-08-21 9:30:00', '2018-08-25 12:00:00');
-
 insert into MostraDipinto values ("A4", "Salvator mundi", 1, '2023-04-10 9:30:00', '2023-04-10 21:30:00');
 insert into MostraDipinto values ("A4", "Tormento di sant'Antonio", 1, '2023-04-10 9:30:00', '2023-04-10 21:30:00');
 insert into MostraDipinto values ("A4", "Mangiatori di patate", 2, '2023-04-10 9:30:00', '2023-04-10 21:30:00');
 insert into MostraDipinto values ("A4", "Impressione, levar del sole", 1, '2023-04-10 9:30:00', '2023-04-10 21:30:00');
 insert into MostraDipinto values ("A4", "Giraffa in fiamme", 5, '2023-04-10 9:30:00', '2023-04-10 21:30:00');
 insert into MostraDipinto values ("A4", "Natura morta con mele e arance", 2, '2023-04-10 9:30:00', '2023-04-10 21:30:00');
+
+insert into MostraAltro values ("A1", "Progetti dela torre Eiffelle", 134, '2022-02-1 9:00:00', '2022-02-03 20:00:00');
+insert into MostraAltro values ("A1", "Progetti di costruzione di Nemo", 20, '2022-02-1 9:00:00', '2022-02-03 20:00:00');
+insert into MostraAltro values ("A1", "Box of Pin Ups", 1, '2022-02-1 9:00:00', '2022-02-03 20:00:00');
+insert into MostraAltro values ("A2", "Goodbye Baby & Amen", 1000, '2022-01-20 12:00:00', '2022-01-22 13:50:00');
+insert into MostraAltro values ("A2", "Progetto costruzione Centro culturale Jean-Marie Tjibaou", 1, '2022-01-20 12:00:00', '2022-01-22 13:50:00');
+insert into MostraAltro values ("A2", "Progetti ristrutturazione porto antico di Genova", 3, '2022-01-20 12:00:00', '2022-01-22 13:50:00');
+insert into MostraAltro values ("A3", "Progetti ponte Dom Luís I", 2, '2018-08-21 9:30:00', '2018-08-25 12:00:00');
+insert into MostraAltro values ("A3", "Fontana", 12, '2018-08-21 9:30:00', '2018-08-25 12:00:00');
+insert into MostraAltro values ("A3", "Progetti ristrutturazione porto antico di Genova", 3, '2018-08-21 9:30:00', '2018-08-25 12:00:00');
+insert into MostraAltro values ("A4", "Progetti dela torre Eiffelle", 134, '2023-04-10 9:30:00', '2023-04-10 21:30:00');
+insert into MostraAltro values ("A4", "Progetti di costruzione di Nemo", 20, '2023-04-10 9:30:00', '2023-04-10 21:30:00');
+insert into MostraAltro values ("A4", "Goodbye Baby & Amen", 1000, '2023-04-10 9:30:00', '2023-04-10 21:30:00');
 
 insert into Materiali values (1, "Bronzo");
 insert into Materiali values (2, "Gesso");
