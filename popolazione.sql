@@ -221,6 +221,35 @@ INSERT INTO MostraDipinto VALUES ("A4", "Impressione, levar del sole", 1, '2023-
 INSERT INTO MostraDipinto VALUES ("A4", "Giraffa in fiamme", 5, '2023-04-10 9:30:00', '2023-04-10 21:30:00');
 INSERT INTO MostraDipinto VALUES ("A4", "Natura morta con mele e arance", 2, '2023-04-10 9:30:00', '2023-04-10 21:30:00');
 
+#Mostra di sculture
+INSERT INTO MostraSculture VALUES("A1", "David di Michelangelo", 1, '2022-04-15 10:00:00', '2011-04-20 20:30:00');
+INSERT INTO MostraSculture VALUES("A1", "La pietà", 5,'2022-04-15 10:00:00', '2011-04-20 20:30:00');
+INSERT INTO MostraSculture VALUES("A1", "Apollo e Dafne", 1, '2010-06-18 10:00:00', '2010-07-18 20:30:00');
+INSERT INTO MostraSculture VALUES("A1", "Baldacchino di san Pietro", 1, '2010-06-18 10:00:00', '2010-07-18 20:30:00');
+INSERT INTO MostraSculture VALUES("A1", "Il David", 1, '2010-06-18 10:00:00', '2010-07-18 20:30:00');
+INSERT INTO MostraSculture VALUES("A1", "San Giorgio", 1, '2010-06-18 10:00:00', '2010-07-18 20:30:00');
+
+INSERT INTO MostraSculture VALUES("A2", "Arca di san Zenobi", 1, '2018-10-01 10:30:00', '2018-10-07 19:30:00');
+INSERT INTO MostraSculture VALUES("A2", "Corcifisso", 1, '2018-10-01 10:30:00', '2018-10-07 19:30:00');
+INSERT INTO MostraSculture VALUES("A2", "Ballon dog", 15, '2023-12-27 12:30:00', '2024-01-02 18:00:00');
+INSERT INTO MostraSculture VALUES("A2", "Il pensatore", 2, '2020-02-07: 10:00:00', '2020-02-07: 10:00:00');
+INSERT INTO MostraSculture VALUES("A2", "Il David", 1, '2020-02-07: 10:00:00', '2020-02-07: 10:00:00');
+INSERT INTO MostraSculture VALUES("A2", "San Giorgio", 1, '2020-02-07: 10:00:00', '2020-02-07: 10:00:00');
+
+INSERT INTO MostraSculture VALUES("A3", "David di Michelangelo", 1, '2006-05-01 13:00:00', '2006-06-01 20:00:00');
+INSERT INTO MostraSculture VALUES("A3", "San Pietro", 1, '2006-06-28 13:00:00', '2006-07-01 20:30:00');
+INSERT INTO MostraSculture VALUES("A3", "Baldacchino di san Pietro", 1, '2006-06-28 13:00:00', '2006-07-01 20:30:00');
+INSERT INTO MostraSculture VALUES("A3", "Ballon dog", 15, '2024-01-05 13:30:00', '2024-01-10 20:00:00');
+INSERT INTO MostraSculture VALUES("A3", "San Giorgio", 1, '2022-08-15 11:00:00', '2022-08-31 20:00:00');
+INSERT INTO MostraSculture VALUES("A3", "Corcifisso", 1, '2022-08-15 11:00:00', '2022-08-31 20:00:00');
+
+INSERT INTO MostraSculture VALUES("A4", "Baldacchino di san Pietro", 1, '2025-01-01 10:30:00', '2025-01-31 20:00:00');
+INSERT INTO MostraSculture VALUES("A4", "David di Michelangelo", 1, '2022-06-10 10:00:00', '2022-06-12 20:00:00');
+INSERT INTO MostraSculture VALUES("A4", "Apollo e Dafne", 1, '2022-06-10 10:00:00', '2022-06-12 20:00:00');
+INSERT INTO MostraSculture VALUES("A4", "La pietà", 5, '2022-06-10 10:00:00', '2022-06-12 20:00:00');
+INSERT INTO MostraSculture VALUES("A4", "San Pietro", 1, '2022-06-10 10:00:00', '2022-06-12 20:00:00');
+INSERT INTO MostraSculture VALUES("A4", "Arca di san Zenobi", 1, '2022-06-10 10:00:00', '2022-06-12 20:00:00');
+
 #Mostra di altro 
 INSERT INTO MostraAltro VALUES ("A1", "Progetti dela torre Eiffelle", 134, '2022-02-1 9:00:00', '2022-02-03 20:00:00');
 INSERT INTO MostraAltro VALUES ("A1", "Progetti di costruzione di Nemo", 20, '2022-02-1 9:00:00', '2022-02-03 20:00:00');
