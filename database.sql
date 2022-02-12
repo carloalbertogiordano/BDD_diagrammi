@@ -321,7 +321,7 @@ insert into MostraDipinto values ("A1", "Ragazzo con pipa", 2, '2022-02-01 9:00:
 insert into MostraDipinto values ("A1", "Gioconda", 2, '2022-02-01 9:00:00', '2022-03-03 20:00:00');
 insert into MostraDipinto values ("A1", "David De Rohan", 5, '2022-02-01 9:00:00', '2022-03-03 20:00:00');
 insert into MostraDipinto values ("A1", "Notte stellata", 1, '2022-02-01 9:00:00', '2022-03-03 20:00:00');
-insert into MostraDipinto values ("A1", "Notte Stellata", 2, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
+insert into MostraDipinto values ("A1", "Notte stellata", 2, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
 insert into MostraDipinto values ("A1", "Gioconda", 2, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
 insert into MostraDipinto values ("A1", "Cristo nella tempesta sul mare di Galilea", 2, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
 insert into MostraDipinto values ("A1", "La Grenouillère", 1, '2019-04-01 12:00:00', '2019-04-05 18:30:00');
