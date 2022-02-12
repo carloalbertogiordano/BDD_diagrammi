@@ -29,7 +29,7 @@ From MostraDipinto M, Dipinto D
 
 #7) Elencare tutti i dipinti che sono stato esposti al "museo di arte" ma non al "museo delle opere" (Nome, Numero, dataOraInizio, dataOraFine)
 
-#8) Selezionare i clienti che hanno visitato tutti i musei
+#8) Selezionare i clienti che hanno visitato tutti i musei (idCliente, nome, cognome)
 
 
 
