@@ -31,6 +31,10 @@ AND quotazione >= 10000
 
 #6) Elencare il genere per il quale la somma delle quotazioni delle sculture che gli appartengono è la più alta
 
+#7) Elencare tutti i dipinti che sono stato esposti al "museo di arte" ma non al "museo delle opere"
+
+#8) Selezionare i clienti che hanno visitato tutti i musei
+
 
 
 
