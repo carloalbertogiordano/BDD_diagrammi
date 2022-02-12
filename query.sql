@@ -16,7 +16,7 @@ From Clienti C, Musei M, Visita V
 #3) Mostrare la somma delle quotazioni di tutti i dipinti
 Select SUM(quotazione) from Dipinto;
 
-#4) Mostrare la somma delle quotazioni dei quadri presenti ad una mostra
+#4) Mostrare la somma delle quotazioni dei quadri presenti ad ogni mostra
 Select M.codiceMuseo, M.dataOraInizio, M.dataOraFine, SUM(D.quotazione)
 From MostraDipinto M, Dipinto D
 	Where M.nomeDipinto = D.nome
