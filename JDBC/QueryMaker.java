@@ -36,4 +36,22 @@ public class QueryMaker {
         }
         return rQuery;
     }
+    public static String toString (ArrayList a) {
+        String s = "";
+        for(int i = 0; i < a.size(); i++){
+            s += format((ArrayList) a.get(i));
+            s += "\n";
+        }
+        return s;
+    }
+
+    private static String format(ArrayList a) {
+        String s = "";
+
+        for (int i = 0; i < a.size(); i++){
+            s += a.get(i);
+            s += "\t";
+        }
+        return s;
+    }
 }
