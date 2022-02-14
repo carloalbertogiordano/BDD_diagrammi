@@ -25,8 +25,15 @@ public class QueryMaker {
         ResultSet rs = st.executeQuery(q);
         ResultSetMetaData rsmd = rs.getMetaData();
         int columnsNumber = rsmd.getColumnCount();
-        ArrayList<ArrayList> rQuery = new ArrayList<ArrayList>();        
-   
+        ArrayList<ArrayList> rQuery = new ArrayList<ArrayList>();  
+        String colonne = "";
+
+        ArrayList<String> nomeTabelle = new ArrayList<String>();
+        for(int i = 1; i <= columnsNumber; i++){
+            nomeTabelle.add(rsmd.getColumnName(i) + "\t");
+        }
+        rQuery.add(nomeTabelle);
+
         while(rs.next()){
             ArrayList<String> tupla = new ArrayList<String>();
             for(int i = 1; i <= columnsNumber; i++){
@@ -34,8 +41,10 @@ public class QueryMaker {
             }
             rQuery.add(tupla);
         }
+
         return rQuery;
     }
+    
     public static String toString (ArrayList a) {
         String s = "";
         for(int i = 0; i < a.size(); i++){
