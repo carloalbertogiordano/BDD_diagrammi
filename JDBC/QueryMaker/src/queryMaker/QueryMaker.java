@@ -47,6 +47,11 @@ public class QueryMaker {
         return rQuery;
     }
     
+    public void makeInsertion (String q) throws SQLException {
+    	Statement st = con.createStatement();
+        st.executeUpdate(q);
+        }
+    
     public static String toString (ArrayList a) {
         String s = "";
         for(int i = 0; i < a.size(); i++){
