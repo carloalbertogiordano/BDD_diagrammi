@@ -1,3 +1,5 @@
+package Manager;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -54,7 +56,7 @@ public class QueryMaker {
         return s;
     }
 
-    private static String format(ArrayList a) {
+    public static String format(ArrayList a) {
         String s = "";
 
         for (int i = 0; i < a.size(); i++){
