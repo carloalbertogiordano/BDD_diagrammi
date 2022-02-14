@@ -1,4 +1,4 @@
-package Manager;
+package queryMaker;
 
 import java.sql.*;
 import java.util.ArrayList;

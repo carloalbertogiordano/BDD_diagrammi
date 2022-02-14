@@ -10,18 +10,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Manager.QueryMaker;
+import queryMaker.*;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
 
-public class SelezioneMuseo2 extends JFrame {
+public class SelezioneMuseo extends JFrame {
 
 	private JPanel contentPane;
-	static final String DB_URL="jdbc:mysql://localhost/DBMuseo";
-	static final String USER="root";
-	static final String PAS="a^%!mq7EB9n^eX";
 	static ArrayList<ArrayList> arr = null;
+	static String codMuseo;
+	protected static QueryMaker qm = new QueryMaker("jdbc:mysql://localhost:3306/DBMuseo", "userMuseo", "2001");
 
 	/**
 	 * Launch the application.
@@ -30,9 +32,8 @@ public class SelezioneMuseo2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					QueryMaker qm = new QueryMaker(DB_URL, USER, PAS);
 					arr = qm.makeQuery("Select nome from Musei;");
-					SelezioneMuseo2 frame = new SelezioneMuseo2();
+					SelezioneMuseo frame = new SelezioneMuseo ();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,9 +45,9 @@ public class SelezioneMuseo2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SelezioneMuseo2() {
+	public SelezioneMuseo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 680, 151);
+		setBounds(100, 100, 413, 151);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -65,18 +66,43 @@ public class SelezioneMuseo2 extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JComboBox comboBox = new JComboBox();
-		panel.add(comboBox);
+		JComboBox comboBoxSelezioneMuseo = new JComboBox();
+		panel.add(comboBoxSelezioneMuseo);
 		
-		JButton btnNewButton = new JButton("Seleziona");
-		panel.add(btnNewButton);
+		JButton btnSeleziona = new JButton("Seleziona");
+		btnSeleziona.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int indice = comboBoxSelezioneMuseo.getSelectedIndex();
+				if(indice == 0)
+					codMuseo = "A1";
+				else if(indice == 1)
+					codMuseo = "A2";
+				else if(indice == 2)
+					codMuseo = "A3";
+				else if(indice == 3)
+					codMuseo = "A4";
+				
+				try {
+					new Gestione(codMuseo).setVisible(true);
+					setVisible(false);
+					dispose();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		panel.add(btnSeleziona);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		for(int i=1; i <= arr.size()-1; i++) {
-			comboBox.addItem(QueryMaker.format(arr.get(i)));
+			comboBoxSelezioneMuseo.addItem(QueryMaker.format(arr.get(i)));
 		}
+	}
+
+	public static QueryMaker getQm() {
+		return qm;
 	}
 
 }

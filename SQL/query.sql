@@ -65,3 +65,31 @@ WHERE NOT EXISTS (
 				AND V.codiceMuseo = M.codice
 				)
 		);
+        
+# Restituire tutte le esposizioni successive a la fata odierna
+DROP VIEW IF EXISTS getMD;
+DROP VIEW IF EXISTS getMS;
+DROP VIEW IF EXISTS getMA;
+
+#create view getMD as (Select MD.codiceMuseo, MD.dataOraInizio, MD.dataOraFine from MostraDipinto MD where MD.dataOraInizio >= now() ); #group by MD.codiceMuseo, MD.dataOraInizio, MD.dataOraFine
+#create view getMS as (Select MS.codiceMuseo, MS.dataOraInizio, MS.dataOraFine from MostraScultura MS where MS.dataOraInizio >= now() ); #group by MS.codiceMuseo, MS.dataOraInizio, MS.dataOraFine
+#create view getMA as (Select MA.codiceMuseo, MA.dataOraInizio, MA.dataOraFine from MostraAltro MA where MA.dataOraInizio >= now() ); #group by MA.codiceMuseo, MA.dataOraInizio, MA.dataOraFine
+
+#Select distinct(getMD.codiceMuseo)
+#from getMD MDD, getMS MMS, getMA MMA
+#group by MMD.codiceMuseo;
+
+#Select *
+#From getMD, getMS, getMA
+#where getMD.codiceMuseo = getMS.codiceMuseo
+#AND getMS.codiceMuseo = getMA.codiceMuseo
+#AND getMD.codiceMuseo = "A4"
+#AND getMS.codiceMuseo = "A4"
+#AND getMA.codiceMuseo = "A4"
+#group by MD.codiceMuseo, MD.dataOraInizio, MD.dataOraFine, MS.codiceMuseo, MS.dataOraInizio, MS.dataOraFine, MA.codiceMuseo, MA.dataOraInizio, MA.dataOraFine
+
+Select M.codiceMuseo, M.dataOraInizio, M.dataOraFine
+from MostraScultura M
+where M.codiceMuseo = "A4"
+AND M.dataOraInizio >= now()
+group by M.codiceMuseo, M.dataOraInizio, M.dataOraFine
