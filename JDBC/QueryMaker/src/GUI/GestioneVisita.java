@@ -98,16 +98,19 @@ public class GestioneVisita extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(comboBoxListaClienti.getSelectedItem().equals("--NUOVO--")) {
-					new NuovoCliente().setVisible(true);
+						new NuovoCliente(codMuseo).setVisible(true);
 					setVisible(false);
 				}
 				
 				String dataOraIngresso, dataOraUscita;
-				dataOraIngresso = textFieldData + " " + textFieldOraIngresso;
-				dataOraUscita = textFieldData + " " + textFieldOraUscita;
+				dataOraIngresso = textFieldData.getText() + " " + textFieldOraIngresso.getText();
+				dataOraUscita = textFieldData.getText() + " " + textFieldOraUscita.getText();
+				int IDutente = comboBoxListaClienti.getSelectedIndex();
+				
+				System.out.println(dataOraIngresso + " " + dataOraUscita + "ID: " + IDutente + "\n");
 				
 				try {
-					qm.makeInsertion("INSERT INTO Visita VALUES ( " + comboBoxListaClienti.getSelectedIndex() + ", \"" + codMuseo + "\" \'" + dataOraIngresso + "\', \'"+ dataOraUscita +"\')");
+					qm.makeInsertion("INSERT INTO Visita VALUES (" + IDutente + ", \"" + codMuseo + "\", '" + dataOraIngresso + "', '"+ dataOraUscita +"')");
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
