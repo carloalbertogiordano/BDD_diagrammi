@@ -32,7 +32,7 @@ public class QueryMaker {
 
         ArrayList<String> nomeTabelle = new ArrayList<String>();
         for(int i = 1; i <= columnsNumber; i++){
-            nomeTabelle.add(rsmd.getColumnName(i) + "\t");
+            nomeTabelle.add(rsmd.getColumnName(i));
         }
         rQuery.add(nomeTabelle);
 
@@ -70,4 +70,10 @@ public class QueryMaker {
         }
         return s;
     }
+    
+    public static String normalizeString (String s) {
+    	s = s.replace("\t", "");    	
+    	return s;
+    }
+    
 }

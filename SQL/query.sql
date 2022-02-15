@@ -92,4 +92,8 @@ Select M.codiceMuseo, M.dataOraInizio, M.dataOraFine
 from MostraScultura M
 where M.codiceMuseo = "A4"
 AND M.dataOraInizio >= now()
-group by M.codiceMuseo, M.dataOraInizio, M.dataOraFine
+group by M.codiceMuseo, M.dataOraInizio, M.dataOraFine;
+
+SELECT numero FROM Dipinto WHERE nome = "Ragazzo con pipa";
+
+SELECT * FROM MostraAltro

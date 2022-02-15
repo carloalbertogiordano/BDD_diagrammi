@@ -76,7 +76,12 @@ public class Gestione extends JFrame {
 		JButton btnGestioneMostre = new JButton("Gestione Mostre");
 		btnGestioneMostre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//toBeInplemented
+				try {
+					new GestioneMostre(codMuseo).setVisible(true);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				dispose();
 			}
 		});
 		btnGestioneMostre.setBounds(180, 38, 172, 25);
