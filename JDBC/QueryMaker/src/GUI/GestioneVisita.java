@@ -113,10 +113,9 @@ public class GestioneVisita extends JFrame {
 					qm.makeInsertion("INSERT INTO Visita VALUES (" + IDutente + ", \"" + codMuseo + "\", '" + dataOraIngresso + "', '"+ dataOraUscita +"')");
 					textPaneResult.setVisible(true);
 					textPaneResult.setText("Successo!");
-					//Thread.sleep(5000);
 					textPaneResult.setVisible(false);
 					textPaneResult.setText("");
-				} catch (SQLException | InterruptedException e) {
+				} catch (SQLException e) {
 					textPaneResult.setVisible(true);
 					textPaneResult.setText("Fallimento!");
 					e.printStackTrace();
