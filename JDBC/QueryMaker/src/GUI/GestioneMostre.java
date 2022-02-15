@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import queryMaker.QueryMaker;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -92,36 +93,40 @@ public class GestioneMostre extends JFrame {
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String nomeOpera = (String) comboBoxOpera.getSelectedItem();
+				String numeroOpera = (String) comboBoxNumero.getSelectedItem();
 				String dataOraInizio = (textFieldDataInizio.getText()+ " " +textFieldOraInizio.getText());
 				String dataOraFine = (textFieldDataFine.getText()+ " " +textFieldOraFine.getText());
-				if(Tools.checkDate(dataOraInizio, dataOraFine))
-				String nomeOpera = (String) comboBoxOpera.getSelectedItem();
-				nomeOpera = Tools.normalizeString(nomeOpera);
-				String numeroOpera = (String) comboBoxNumero.getSelectedItem();
-				numeroOpera = Tools.normalizeString(numeroOpera);
-				if(comboBoxMostra.getSelectedIndex() == 0) {
-					try {
-						qm.makeInsertion("INSERT INTO MostraDipinto VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+				if (!Tools.checkDate(dataOraInizio, dataOraFine)) {
+					JOptionPane.showMessageDialog(contentPane, "Inserire dataOra in questo formato: AAAA:MM:GG HH:MM:SS");
 				}
-				if(comboBoxMostra.getSelectedIndex() == 1) {
-					try {
-						qm.makeInsertion("INSERT INTO MostraScultura VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
-					} catch (SQLException e) {
-						e.printStackTrace();
+				else {
+					nomeOpera = Tools.normalizeString(nomeOpera);
+					numeroOpera = Tools.normalizeString(numeroOpera);
+					if(comboBoxMostra.getSelectedIndex() == 0) {
+						try {
+							qm.makeInsertion("INSERT INTO MostraDipinto VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
 					}
-				}
-				if(comboBoxMostra.getSelectedIndex() == 2) {
-					try {
-						qm.makeInsertion("INSERT INTO MostraAltro VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
-					} catch (SQLException e) {
-						e.printStackTrace();
+					if(comboBoxMostra.getSelectedIndex() == 1) {
+						try {
+							qm.makeInsertion("INSERT INTO MostraScultura VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
 					}
-				}
+					if(comboBoxMostra.getSelectedIndex() == 2) {
+						try {
+							qm.makeInsertion("INSERT INTO MostraAltro VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
 					
 				
+				}
 			}
 		});
 		btnAggiungi.setBounds(159, 318, 117, 25);
@@ -221,7 +226,7 @@ public class GestioneMostre extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<ArrayList> num = null;
 				String nomeOpera = (String) comboBoxOpera.getSelectedItem();
-				nomeOpera = QueryMaker.normalizeString(nomeOpera);
+				nomeOpera = Tools.normalizeString(nomeOpera);
 				try {
 					if(comboBoxMostra.getSelectedIndex() == 0) 
 						num = qm.makeQuery("Select numero From Dipinto Where nome = \""+ nomeOpera +"\";");
