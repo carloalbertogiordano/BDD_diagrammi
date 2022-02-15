@@ -1,6 +1,6 @@
 USE DBMuseo;
 
-INSERT INTO Clienti VALUES (0, "Mauro", "Rossi", '1950-09-19');
+INSERT INTO Clienti VALUES (1, "Mauro", "Rossi", '1950-09-19');
 INSERT INTO Clienti (nome, cognome, ddnascita) VALUES ("Maccio", "Capatonda", '1978-03-07');
 INSERT INTO Clienti (nome, cognome, ddnascita) VALUES ("Filippo", "Bianchi", '2001-04-02');
 INSERT INTO Clienti (nome, cognome, ddnascita) VALUES ("Gianluca", "Verdi", '2003-12-31');
