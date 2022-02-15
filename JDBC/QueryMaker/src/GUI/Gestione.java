@@ -52,8 +52,9 @@ public class Gestione extends JFrame {
 		btnGestioneVisite.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					//Richiama la finestra di gestione delle visite e elimina la finestra corrente
 					new GestioneVisita(codMuseo).setVisible(true);
-					setVisible(false);
+					dispose();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -70,7 +71,7 @@ public class Gestione extends JFrame {
 		JTextPane textPaneMostre = new JTextPane();
 		textPaneMostre.setBounds(22, 37, 405, 177);
 		contentPane.add(textPaneMostre);
-		
+		//Ricerca quali mostre sono o saranno in esposizione e le mostra
 		textPaneMostre.setText("MOSTRE SCULTURE:\n");
 		String q = "Select M.dataOraInizio, M.dataOraFine from MostraScultura M where M.codiceMuseo = \"" + codMuseo + "\" AND M.dataOraInizio >= now() group by M.codiceMuseo, M.dataOraInizio, M.dataOraFine";
 		ArrayList<ArrayList> o = qm.makeQuery(q);
@@ -94,6 +95,7 @@ public class Gestione extends JFrame {
 		JButton btnAnnulla = new JButton("Annulla");
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//Richiama la finestra precedente
 				new SelezioneMuseo().setVisible(true);
 				dispose();
 			}

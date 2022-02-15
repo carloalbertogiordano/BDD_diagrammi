@@ -84,6 +84,7 @@ public class NuovoCliente extends JFrame {
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					//Elimina la finestra corrente e richiama la precedente
 					dispose();
 					new GestioneVisita(codMuseo).setVisible(true);
 				} catch (SQLException e) {
@@ -96,7 +97,9 @@ public class NuovoCliente extends JFrame {
 		
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
+			//Inserisce nel database il nuovo cliente
 			public void actionPerformed(ActionEvent arg0) {
+				//Formatta come necessario a sql
 				String nome = textFieldNome.getText();
 				String cognome = textFieldCognome.getText();
 				String ddn = textFieldDdn.getText();

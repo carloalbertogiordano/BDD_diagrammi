@@ -72,6 +72,7 @@ public class SelezioneMuseo extends JFrame {
 		JButton btnSeleziona = new JButton("Seleziona");
 		btnSeleziona.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//in base all'indice della combo box seleziona il codice del museo
 				int indice = comboBoxSelezioneMuseo.getSelectedIndex();
 				if(indice == 0)
 					codMuseo = "A1";
@@ -83,8 +84,9 @@ public class SelezioneMuseo extends JFrame {
 					codMuseo = "A4";
 				
 				try {
+					//Richiama la gui successiva passandogli in codice del museo
 					new Gestione(codMuseo).setVisible(true);
-					setVisible(false);
+					//Getta la finestra corrente
 					dispose();
 				} catch (SQLException e) {
 					e.printStackTrace();

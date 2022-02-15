@@ -25,7 +25,6 @@ public class GestioneVisita extends JFrame {
 	private JTextField textFieldData;
 	private JTextField textFieldOraIngresso;
 	private JTextField textFieldOraUscita;
-	private JTextPane textPaneResult;
 	private static QueryMaker qm = SelezioneMuseo.getQm();
 
 	/**
@@ -63,10 +62,12 @@ public class GestioneVisita extends JFrame {
 		JComboBox comboBoxListaClienti = new JComboBox();
 		comboBoxListaClienti.setBounds(81, 7, 202, 24);
 		contentPane.add(comboBoxListaClienti);
+		//Cerca tutti i clienti e li scrive nella combo box
 		ArrayList<ArrayList> o = qm.makeQuery("SELECT nome, cognome FROM Clienti");
 		for(int i=1; i <= o.size()-1; i++) {
 			comboBoxListaClienti.addItem(QueryMaker.format(o.get(i)));
 		}
+		//Ultimo item, rappresenta l'inserimento di un nuovo cliente
 		comboBoxListaClienti.addItem("--NUOVO--");
 		
 		JLabel lblVisita = new JLabel("Data:");
@@ -99,10 +100,12 @@ public class GestioneVisita extends JFrame {
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//Se è stato selezionato nuovo cliente passa alla finestra di aggiunta clienti eliminando la corrente
 				if(comboBoxListaClienti.getSelectedItem().equals("--NUOVO--")) {
 					new NuovoCliente(codMuseo).setVisible(true);
 					dispose();
 				}
+				//Formatta data ingresso, ora ingresso e ora uscita come necessario a SQL
 				String dataOraIngresso, dataOraUscita;
 				dataOraIngresso = textFieldData.getText() + " " + textFieldOraIngresso.getText();
 				dataOraUscita = textFieldData.getText() + " " + textFieldOraUscita.getText();
@@ -119,6 +122,7 @@ public class GestioneVisita extends JFrame {
 		
 		JButton btnAnnulla = new JButton("Annulla");
 		btnAnnulla.addActionListener(new ActionListener() {
+			//Torna alla finestra precedente
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					new Gestione(codMuseo).setVisible(true);
@@ -130,11 +134,5 @@ public class GestioneVisita extends JFrame {
 		});
 		btnAnnulla.setBounds(12, 252, 117, 25);
 		contentPane.add(btnAnnulla);
-		
-		textPaneResult = new JTextPane();
-		textPaneResult.setEditable(false);
-		textPaneResult.setBounds(166, 211, 117, 21);
-		contentPane.add(textPaneResult);
-		textPaneResult.setVisible(false);
 	}
 }
