@@ -1,18 +1,24 @@
 package GUI;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
-import queryMaker.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
+
+import queryMaker.QueryMaker;
+import javax.swing.JScrollBar;
+import javax.swing.JTextArea;
+import java.awt.BorderLayout;
 
 public class Gestione extends JFrame {
 
@@ -42,65 +48,63 @@ public class Gestione extends JFrame {
 	public Gestione(String codMuseo) throws SQLException {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 643, 419);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JLabel label = new JLabel("");
+		label.setBounds(125, 0, 403, 25);
+		contentPane.add(label);
+		
 		JButton btnGestioneVisite = new JButton("Gestione Visite");
-		btnGestioneVisite.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					//Richiama la finestra di gestione delle visite e elimina la finestra corrente
-					new GestioneVisita(codMuseo).setVisible(true);
-					dispose();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				
-			}
-		});
-		btnGestioneVisite.setBounds(22, 5, 142, 25);
+		btnGestioneVisite.setBounds(12, 38, 142, 25);
 		contentPane.add(btnGestioneVisite);
 		
 		JButton btnGestioneMostre = new JButton("Gestione Mostre");
-		btnGestioneMostre.setBounds(253, 5, 172, 25);
+		btnGestioneMostre.setBounds(180, 38, 172, 25);
 		contentPane.add(btnGestioneMostre);
 		
-		JTextPane textPaneMostre = new JTextPane();
-		textPaneMostre.setBounds(22, 37, 405, 177);
-		contentPane.add(textPaneMostre);
-		//Ricerca quali mostre sono o saranno in esposizione e le mostra
-		textPaneMostre.setText("MOSTRE SCULTURE:\n");
+		JPanel panel = new JPanel();
+		panel.setBounds(22, 75, 534, 216);
+		contentPane.add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setText("MOSTRE SCULTURE:\nData inizio   Ora inizio   Data fine     Ora fine\n");
+		textArea.setText(textArea.getText() + "\n\nMOSTRE DIPINTI:\nData inizio   Ora inizio   Data fine     Ora fine\n");
+		textArea.setText(textArea.getText() + "\n\nMOSTRE ALTRO:\nData inizio   Ora inizio   Data fine     Ora fine\n");
 		String q = "Select M.dataOraInizio, M.dataOraFine from MostraScultura M where M.codiceMuseo = \"" + codMuseo + "\" AND M.dataOraInizio >= now() group by M.codiceMuseo, M.dataOraInizio, M.dataOraFine";
 		ArrayList<ArrayList> o = qm.makeQuery(q);
 		for(int i=1; i <= o.size()-1; i++) {
-			textPaneMostre.setText(textPaneMostre.getText() + QueryMaker.format(o.get(i)));
+			textArea.append(QueryMaker.format(o.get(i))+ "\n");
 		}
 		q = "Select M.dataOraInizio, M.dataOraFine from MostraDipinto M where M.codiceMuseo = \"" + codMuseo + "\" AND M.dataOraInizio >= now() group by M.codiceMuseo, M.dataOraInizio, M.dataOraFine";
-		textPaneMostre.setText(textPaneMostre.getText() + "\n\nMOSTRE DIPINTI:\n");
 		o = qm.makeQuery(q);
 		for(int i=1; i <= o.size()-1; i++) {
-			textPaneMostre.setText( textPaneMostre.getText() + QueryMaker.format(o.get(i)));
+			textArea.append(QueryMaker.format(o.get(i))+ "\n");
 		}
-		textPaneMostre.setText(textPaneMostre.getText() + "\n\nMOSTRE ALTRO:\n");
 		q = "Select M.dataOraInizio, M.dataOraFine from MostraAltro M where M.codiceMuseo = \"" + codMuseo + "\" AND M.dataOraInizio >= now() group by M.codiceMuseo, M.dataOraInizio, M.dataOraFine";
 		o = qm.makeQuery(q);
 		for(int i=1; i <= o.size()-1; i++) {
-			textPaneMostre.setText( textPaneMostre.getText() + QueryMaker.format(o.get(i)));
+			textArea.append(QueryMaker.format(o.get(i))+ "\n");
 		}
+		
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		panel.add(scrollPane);
 		
 		
 		JButton btnAnnulla = new JButton("Annulla");
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//Richiama la finestra precedente
 				new SelezioneMuseo().setVisible(true);
 				dispose();
 			}
 		});
-		btnAnnulla.setBounds(12, 226, 117, 25);
+		
+		btnAnnulla.setBounds(12, 320, 117, 25);
 		contentPane.add(btnAnnulla);
 	}
 }
