@@ -49,6 +49,17 @@ public class Gestione extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnGestioneVisite = new JButton("Gestione Visite");
+		btnGestioneVisite.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					new GestioneVisita(codMuseo).setVisible(true);
+					setVisible(false);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
 		btnGestioneVisite.setBounds(22, 5, 142, 25);
 		contentPane.add(btnGestioneVisite);
 		

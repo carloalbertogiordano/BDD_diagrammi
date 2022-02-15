@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
 
 public class GestioneVisita extends JFrame {
 
@@ -24,6 +25,7 @@ public class GestioneVisita extends JFrame {
 	private JTextField textFieldData;
 	private JTextField textFieldOraIngresso;
 	private JTextField textFieldOraUscita;
+	private JTextPane textPaneResult;
 	private static QueryMaker qm = SelezioneMuseo.getQm();
 
 	/**
@@ -101,17 +103,22 @@ public class GestioneVisita extends JFrame {
 						new NuovoCliente(codMuseo).setVisible(true);
 					setVisible(false);
 				}
-				
 				String dataOraIngresso, dataOraUscita;
 				dataOraIngresso = textFieldData.getText() + " " + textFieldOraIngresso.getText();
 				dataOraUscita = textFieldData.getText() + " " + textFieldOraUscita.getText();
 				int IDutente = comboBoxListaClienti.getSelectedIndex();
-				
-				System.out.println(dataOraIngresso + " " + dataOraUscita + "ID: " + IDutente + "\n");
-				
+				IDutente++;
+								
 				try {
 					qm.makeInsertion("INSERT INTO Visita VALUES (" + IDutente + ", \"" + codMuseo + "\", '" + dataOraIngresso + "', '"+ dataOraUscita +"')");
-				} catch (SQLException e) {
+					textPaneResult.setVisible(true);
+					textPaneResult.setText("Successo!");
+					Thread.sleep(5000);
+					textPaneResult.setVisible(false);
+					textPaneResult.setText("");
+				} catch (SQLException | InterruptedException e) {
+					textPaneResult.setVisible(true);
+					textPaneResult.setText("Fallimento!");
 					e.printStackTrace();
 				}
 			}
@@ -122,5 +129,11 @@ public class GestioneVisita extends JFrame {
 		JButton btnAnnulla = new JButton("Annulla");
 		btnAnnulla.setBounds(12, 252, 117, 25);
 		contentPane.add(btnAnnulla);
+		
+		textPaneResult = new JTextPane();
+		textPaneResult.setEditable(false);
+		textPaneResult.setBounds(166, 211, 117, 21);
+		contentPane.add(textPaneResult);
+		textPaneResult.setVisible(false);
 	}
 }
