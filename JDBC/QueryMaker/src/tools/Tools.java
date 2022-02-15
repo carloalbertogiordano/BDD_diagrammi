@@ -27,5 +27,9 @@ public class Tools {
     	return true;
     }
     
+    public static String normalizeString (String s) {
+    	s = s.replace("\t", "");    	
+    	return s;
+    }
     
 }

@@ -70,10 +70,4 @@ public class QueryMaker {
         }
         return s;
     }
-    
-    public static String normalizeString (String s) {
-    	s = s.replace("\t", "");    	
-    	return s;
-    }
-    
 }

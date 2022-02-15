@@ -1,6 +1,6 @@
 package GUI;
 
-import java.awt.BorderLayout;
+import tools.*;
 import java.awt.EventQueue;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -94,10 +94,11 @@ public class GestioneMostre extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String dataOraInizio = (textFieldDataInizio.getText()+ " " +textFieldOraInizio.getText());
 				String dataOraFine = (textFieldDataFine.getText()+ " " +textFieldOraFine.getText());
+				if(Tools.checkDate(dataOraInizio, dataOraFine))
 				String nomeOpera = (String) comboBoxOpera.getSelectedItem();
-				nomeOpera = QueryMaker.normalizeString(nomeOpera);
+				nomeOpera = Tools.normalizeString(nomeOpera);
 				String numeroOpera = (String) comboBoxNumero.getSelectedItem();
-				numeroOpera = QueryMaker.normalizeString(numeroOpera);
+				numeroOpera = Tools.normalizeString(numeroOpera);
 				if(comboBoxMostra.getSelectedIndex() == 0) {
 					try {
 						qm.makeInsertion("INSERT INTO MostraDipinto VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
