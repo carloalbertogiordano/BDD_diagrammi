@@ -100,24 +100,16 @@ public class GestioneVisita extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(comboBoxListaClienti.getSelectedItem().equals("--NUOVO--")) {
-						new NuovoCliente(codMuseo).setVisible(true);
-					setVisible(false);
+					new NuovoCliente(codMuseo).setVisible(true);
+					dispose();
 				}
 				String dataOraIngresso, dataOraUscita;
 				dataOraIngresso = textFieldData.getText() + " " + textFieldOraIngresso.getText();
 				dataOraUscita = textFieldData.getText() + " " + textFieldOraUscita.getText();
-				int IDutente = comboBoxListaClienti.getSelectedIndex();
-				IDutente++;
-								
+				int IDutente = 1 + (comboBoxListaClienti.getSelectedIndex());						
 				try {
-					qm.makeInsertion("INSERT INTO Visita VALUES (" + IDutente + ", \"" + codMuseo + "\", '" + dataOraIngresso + "', '"+ dataOraUscita +"')");
-					textPaneResult.setVisible(true);
-					textPaneResult.setText("Successo!");
-					textPaneResult.setVisible(false);
-					textPaneResult.setText("");
+					qm.makeInsertion("INSERT INTO Visita VALUES (" + IDutente + ", \""+codMuseo+"\", '"+dataOraIngresso+"', '"+dataOraUscita+"')");
 				} catch (SQLException e) {
-					textPaneResult.setVisible(true);
-					textPaneResult.setText("Fallimento!");
 					e.printStackTrace();
 				}
 			}
@@ -126,6 +118,16 @@ public class GestioneVisita extends JFrame {
 		contentPane.add(btnOk);
 		
 		JButton btnAnnulla = new JButton("Annulla");
+		btnAnnulla.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					new Gestione(codMuseo).setVisible(true);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				dispose();
+			}
+		});
 		btnAnnulla.setBounds(12, 252, 117, 25);
 		contentPane.add(btnAnnulla);
 		
