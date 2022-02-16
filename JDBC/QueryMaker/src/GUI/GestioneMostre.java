@@ -2,7 +2,9 @@ package GUI;
 
 import tools.*;
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -21,6 +23,7 @@ import java.awt.event.ActionEvent;
 
 public class GestioneMostre extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldDataInizio;
 	private JTextField textFieldDataFine;
@@ -97,35 +100,53 @@ public class GestioneMostre extends JFrame {
 				String numeroOpera = (String) comboBoxNumero.getSelectedItem();
 				String dataOraInizio = (textFieldDataInizio.getText()+ " " +textFieldOraInizio.getText());
 				String dataOraFine = (textFieldDataFine.getText()+ " " +textFieldOraFine.getText());
-				if (!Tools.checkDate(dataOraInizio, dataOraFine)) {
-					JOptionPane.showMessageDialog(contentPane, "Inserire dataOra in questo formato: AAAA:MM:GG HH:MM:SS");
-				}
-				else {
-					nomeOpera = Tools.normalizeString(nomeOpera);
-					numeroOpera = Tools.normalizeString(numeroOpera);
-					if(comboBoxMostra.getSelectedIndex() == 0) {
-						try {
-							qm.makeInsertion("INSERT INTO MostraDipinto VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
-					if(comboBoxMostra.getSelectedIndex() == 1) {
-						try {
-							qm.makeInsertion("INSERT INTO MostraScultura VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
-					if(comboBoxMostra.getSelectedIndex() == 2) {
-						try {
-							qm.makeInsertion("INSERT INTO MostraAltro VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
-					
 				
+				try {
+					if(!Tools.checkDate(dataOraInizio, dataOraFine)) {
+						try {
+							new GestioneMostre(codMuseo).setVisible(true);
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+						dispose();
+					}
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				
+				try {
+					if (!Tools.checkDate(dataOraInizio, dataOraFine)) {
+						JOptionPane.showMessageDialog(contentPane, "Inserire dataOra in questo formato: AAAA:MM:GG HH:MM:SS");
+					}
+					else {
+						nomeOpera = Tools.normalizeString(nomeOpera);
+						numeroOpera = Tools.normalizeString(numeroOpera);
+						if(comboBoxMostra.getSelectedIndex() == 0) {
+							try {
+								qm.makeInsertion("INSERT INTO MostraDipinto VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
+							} catch (SQLException e) {
+								e.printStackTrace();
+							}
+						}
+						if(comboBoxMostra.getSelectedIndex() == 1) {
+							try {
+								qm.makeInsertion("INSERT INTO MostraScultura VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
+							} catch (SQLException e) {
+								e.printStackTrace();
+							}
+						}
+						if(comboBoxMostra.getSelectedIndex() == 2) {
+							try {
+								qm.makeInsertion("INSERT INTO MostraAltro VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
+							} catch (SQLException e) {
+								e.printStackTrace();
+							}
+						}
+						
+					
+					}
+				} catch (HeadlessException | ParseException e) {
+					e.printStackTrace();
 				}
 			}
 		});

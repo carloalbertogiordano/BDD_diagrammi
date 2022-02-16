@@ -1,6 +1,5 @@
 package GUI;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,10 +16,10 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
 
 public class GestioneVisita extends JFrame {
 
+	private static final long serialVersionUID = -6555567344720629741L;
 	private JPanel contentPane;
 	private JTextField textFieldData;
 	private JTextField textFieldOraIngresso;

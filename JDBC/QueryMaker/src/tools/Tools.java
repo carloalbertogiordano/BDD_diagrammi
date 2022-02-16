@@ -98,7 +98,7 @@ public class Tools {
     	return true;
     }
 
-    private static boolean dateValidation(String date)
+    public static boolean dateValidation(String date)
     {
       boolean status = false;
     if (checkDate(date)) {
