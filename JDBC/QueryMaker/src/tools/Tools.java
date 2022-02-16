@@ -18,18 +18,32 @@ public class Tools {
     	
     	String data1 = getDate(d1);
     	System.out.println("data1: "+data1);
-    	String ora1 = getTime(d1);
-    	System.out.println("ora1: "+ora1);
+    	String tempo1 = getTime(d1);
+    	System.out.println("ora1: "+tempo1);
     	String data2 = getDate(d2);
     	System.out.println("data2: "+data2);
-    	String ora2 = getTime(d2);
-    	System.out.println("ora2: "+ora2);
+    	String tempo2 = getTime(d2);
+    	System.out.println("ora2: "+tempo2);
 
     	
-    	if( !hourValidation(ora1) && !dateValidation(data1) && !hourValidation(ora2) && !dateValidation(data2)) {
-    		System.out.println("DateTimeFormat is not valid");
+    	if(!timeValidation(tempo1)) {
+    		System.out.println("Date format is not valid");
     		return false;
     	}
+    	
+    	if(!timeValidation(tempo2)) {
+    		System.out.println("Date format is not valid");
+    		return false;
+    	}
+    	
+    	if(dateValidation(data1)) {
+    		return false;
+    	}
+    	
+    	if(dateValidation(data2)) {
+    		return false;
+    	}
+    	
     	System.out.println("DateTime Valid");
     	
     	if(!dateOrderIsCorrect(data1, data2)) {
@@ -42,6 +56,12 @@ public class Tools {
     	
     }
     
+    private static boolean timeValidation (String time) {
+    	if(hourValidation(time) && minuteValidation(time) && secondValidation(time))
+    		return true;
+    	return false;
+    }
+
     private static boolean dateOrderIsCorrect (String dat1, String dat2) throws ParseException {
     	String data1 = getDate(dat1);
     	String data2 = getDate(dat2);
@@ -55,7 +75,25 @@ public class Tools {
     
     private static boolean hourValidation(String o) {
     	int ora = Integer.parseInt(o.substring(0,2));
-    	if(ora < 0 || ora > 23)
+    	if(ora < 0 || ora > 23) {
+    		return false;
+    	}
+    	return true;
+    }
+    
+    private static boolean minuteValidation(String time) {
+    	String mS = time.substring(3, 5);
+    	int m = Integer.parseInt(mS);
+    	if(m < 0 || m > 59) {
+    		return false;
+    	}
+    	return true;
+    }
+    
+    private static boolean secondValidation(String time) {
+    	String sS = time.substring(6);
+    	int s = Integer.parseInt(sS);
+    	if(s < 0 || s > 59)
     		return false;
     	return true;
     }

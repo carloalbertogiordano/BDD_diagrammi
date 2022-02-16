@@ -103,6 +103,9 @@ public class NuovoCliente extends JFrame {
 				String nome = textFieldNome.getText();
 				String cognome = textFieldCognome.getText();
 				String ddn = textFieldDdn.getText();
+				
+				if(Tools.)
+				
 				try {
 					qm.makeInsertion("INSERT INTO Clienti (nome, cognome, ddnascita) VALUES (\""+nome+"\", \""+cognome+"\", '"+ddn+"');");
 				} catch (SQLException e) {
