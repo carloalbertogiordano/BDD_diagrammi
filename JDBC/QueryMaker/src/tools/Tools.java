@@ -1,77 +1,63 @@
 package tools;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.GregorianCalendar;
-import java.util.zip.DataFormatException;
-
-import GUI.BadDateTimeExcetion;
 
 public class Tools {
-    static public boolean checkDate(String date1, String date2) {
-//    	String[] campo1 = date1.split(" ");
-//    	String[] campo2 = date2.split(" ");
-//    	
-//    	String[] d1 = campo1[0].split("-");
-//    	String[] d2 = campo2[0].split("-");
-//    	
-//    	String[] ora1 = campo1[1].split(":");
-//    	String[] ora2 = campo2[1].split(":");
-//    	
-//    	int month1 = Integer.parseInt(d1[1]);
-//    	int month2 = Integer.parseInt(d2[1]);
-//    	
-//    	int hour1 = Integer.parseInt(ora1[0]);
-//    	int hour2 = Integer.parseInt(ora2[0]);
-//    	    	
-//    	int minute1 = Integer.parseInt(ora1[1]);
-//    	int minute2 = Integer.parseInt(ora2[1]);
-//    	
-//    	int second1 = Integer.parseInt(ora1[2]);
-//    	int second2 = Integer.parseInt(ora2[2]);
-//    	
-//    	if(!d1[0].matches("\\d\\d\\d\\d") || !d1[1].matches("\\d\\d") || !d1[0].matches("\\d\\d") || !(month1<13) || !(month1>0)) {
-//    		return false;
-//    	}
-//    	
-//    	if(!d2[0].matches("\\d\\d\\d\\d") || !d2[1].matches("\\d\\d") || !d2[0].matches("\\d\\d") || !(month2<13) || !(month2>0)) {
-//    		return false;
-//    	}
-//    	
-//    	GregorianCalendar da1 = new GregorianCalendar(Integer.parseInt(d1[0]), month1-1, Integer.parseInt(d1[2]), hour1, minute1, second1);
-//    	GregorianCalendar da2 = new GregorianCalendar(Integer.parseInt(d2[0]), month2-1, Integer.parseInt(d2[2]), hour2, minute2, second2);
-//    	
-//    	if(da2.before(da1)) {
-//    		return false;
-//    	}
-//    	
-//    	return true;
+    static public boolean checkDate(String d1, String d2) throws ParseException {
+
+    	//A A A A : M M : G G || H  H  :  M  M   :   S   S
+    	//0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  16  17  18
     	
-    	if(date1.length() != 17 || date2.length() != 17)
+    	if(d1.length() != 19 || d2.length() != 19) {
+    		System.out.println("L1 corrente= "+d1.length()+"L2 corrente= "+d2.length()+"LunghezzaAttesa= 19");
     		return false;
-    	String data1 = getDate(date1);
-    	String ora1 = getTime(date1);
-    	String data2 = getDate(date2);
-    	String ora2 = getTime(date2);
+    	}
     	
-    	if (!dateValidation(data1) || !dateValidation(data2))
+    	String data1 = getDate(d1);
+    	System.out.println("data1: "+data1);
+    	String ora1 = getTime(d1);
+    	System.out.println("ora1: "+ora1);
+    	String data2 = getDate(d2);
+    	System.out.println("data2: "+data2);
+    	String ora2 = getTime(d2);
+    	System.out.println("ora2: "+ora2);
+
+    	
+    	if( !hourValidation(ora1) && !dateValidation(data1) && !hourValidation(ora2) && !dateValidation(data2)) {
+    		System.out.println("DateTimeFormat is not valid");
     		return false;
-    	 
+    	}
+    	System.out.println("DateTime Valid");
     	
-    	if(!hourValidation(ora1) || !hourValidation(ora2))
+    	if(!dateOrderIsCorrect(data1, data2)) {
+    		System.out.println("Invalid dateTimeOrder, second in lower than first");
     		return false;
-    	
-    	
+    	}
+    	System.out.println("dateOrder Valid");
+
+    	return true;
     	
     }
     
-    private static boolean hourValidation(String T) {
-    	String oraS = getHour(T);
+    private static boolean dateOrderIsCorrect (String dat1, String dat2) throws ParseException {
+    	String data1 = getDate(dat1);
+    	String data2 = getDate(dat2);
+        GregorianCalendar cal1 = new GregorianCalendar(Integer.parseInt(data1.substring(0, 4)), Integer.parseInt(data1.substring(5, 7)), Integer.parseInt(data1.substring(8, 10))); 
+        GregorianCalendar cal2 = new GregorianCalendar(Integer.parseInt(data2.substring(0, 4)), Integer.parseInt(data2.substring(5, 7)), Integer.parseInt(data2.substring(8, 10))); 
     	
-    	if(ora < 0 || ora > "23") {
-    		
-    	}
+    	if( cal1.after(cal2) )
+    		return false;
+    	return true;
+    }
+    
+    private static boolean hourValidation(String o) {
+    	int ora = Integer.parseInt(o.substring(0,2));
+    	if(ora < 0 || ora > 23)
+    		return false;
+    	return true;
     }
 
     private static boolean dateValidation(String date)
@@ -106,7 +92,9 @@ public class Tools {
     	return ora+":"+minuto+":"+secondo;
     }
     private static String getHour(String h) {
-    	return h.substring(11, 13);
+    	String s = h.substring(11, 13);
+    	System.out.println("getHour: "+s+ " PrecString: "+h);
+    	return s;
     }
     private static String getMinute (String m) {
     	return m.substring(14, 16);
@@ -128,7 +116,7 @@ public class Tools {
     	return m.substring(5, 7);
     }
     private static String getDay(String g) {
-    	return g.substring(9);
+    	return g.substring(8, 10);
     }
 
     public static String normalizeString (String s) {
