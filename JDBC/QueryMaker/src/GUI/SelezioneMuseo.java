@@ -1,29 +1,28 @@
 package GUI;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import queryMaker.*;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.awt.event.ActionEvent;
+import queryMaker.QueryMaker;
 
 public class SelezioneMuseo extends JFrame {
 
 	private JPanel contentPane;
-	static ArrayList<ArrayList> arr = null;
+	static ArrayList<ArrayList> arr = null; //arrayList di arrayList che conterrà il risultato della query
 	static String codMuseo;
-	protected static QueryMaker qm = new QueryMaker("jdbc:mysql://localhost:3306/DBMuseo", "userMuseo", "2001");
+	//Connesisone al database
+	protected static QueryMaker qm = new QueryMaker("jdbc:mysql://localhost/DBMuseo", "root", "a^%!mq7EB9n^eX");
 
 	/**
 	 * Launch the application.
@@ -32,7 +31,10 @@ public class SelezioneMuseo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					arr = qm.makeQuery("Select nome from Musei;");
+					/*Query che ci permette di selzionare tutte le colonne dalla tabella Musei. Ciò è necessario per ottenere i nomi dei musei
+					e i loro codici*/
+					arr = qm.makeQuery("Select * from Musei;");
+					qm.makeInsertion("UPDATE Musei SET numeroVisite = 0");
 					SelezioneMuseo frame = new SelezioneMuseo ();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -67,44 +69,46 @@ public class SelezioneMuseo extends JFrame {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JComboBox comboBoxSelezioneMuseo = new JComboBox();
-		panel.add(comboBoxSelezioneMuseo);
 		
-		JButton btnSeleziona = new JButton("Seleziona");
-		btnSeleziona.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//in base all'indice della combo box seleziona il codice del museo
-				int indice = comboBoxSelezioneMuseo.getSelectedIndex();
-				if(indice == 0)
-					codMuseo = "A1";
-				else if(indice == 1)
-					codMuseo = "A2";
-				else if(indice == 2)
-					codMuseo = "A3";
-				else if(indice == 3)
-					codMuseo = "A4";
+		/*
+		 * Una volta effettuata la query avermo nell'arrayList di arrayList tutte le istanze di musei. Con il cilco for seguente andiamo 
+		 * a riempire i campi del comboBox necessario per la selezione del museo andando a selezionare la colonna contenente il nom (1), dell'iesimo 
+		 * ArrayList
+		 * */
+		
+		for(int i=1; i <= arr.size()-1; i++) {
+			comboBoxSelezioneMuseo.addItem(arr.get(i).get(1));
+		}
 				
+		comboBoxSelezioneMuseo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				/*
+				 * Una volta selezionato un elemento del comboBox andiamo a prendere l'indice selezionato così da poter memorizzare il codice 
+				 * del museo selezionato
+				 * */
+				int choois = comboBoxSelezioneMuseo.getSelectedIndex();
+				codMuseo = (String) arr.get(choois+1).get(0);
 				try {
 					//Richiama la gui successiva passandogli in codice del museo
 					new Gestione(codMuseo).setVisible(true);
-					//Getta la finestra corrente
+					//Chiude la finestra corrente
 					dispose();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
 				}
 			}
 		});
-		panel.add(btnSeleziona);
+		
+		panel.add(comboBoxSelezioneMuseo);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		for(int i=1; i <= arr.size()-1; i++) {
-			comboBoxSelezioneMuseo.addItem(QueryMaker.format(arr.get(i)));
-		}
+
 	}
 
 	public static QueryMaker getQm() {
 		return qm;
 	}
-
 }

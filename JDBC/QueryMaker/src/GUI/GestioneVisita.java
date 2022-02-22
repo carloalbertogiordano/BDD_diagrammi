@@ -1,29 +1,31 @@
 package GUI;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import queryMaker.QueryMaker;
 
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-
 public class GestioneVisita extends JFrame {
 
-	private static final long serialVersionUID = -6555567344720629741L;
 	private JPanel contentPane;
-	private JTextField textFieldData;
-	private JTextField textFieldOraIngresso;
-	private JTextField textFieldOraUscita;
+	//Ereditiamo l'oggetto QueryMaker in modo da non doverlo istanziare nuovamente passandogli i valori URL, UNAME, PASS
 	private static QueryMaker qm = SelezioneMuseo.getQm();
 
 	/**
@@ -48,7 +50,7 @@ public class GestioneVisita extends JFrame {
 	 */
 	public GestioneVisita(String codMuseo) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 295, 324);
+		setBounds(100, 100, 299, 160);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -59,64 +61,50 @@ public class GestioneVisita extends JFrame {
 		contentPane.add(lblCliente);
 		
 		JComboBox comboBoxListaClienti = new JComboBox();
-		comboBoxListaClienti.setBounds(81, 7, 202, 24);
-		contentPane.add(comboBoxListaClienti);
-		//Cerca tutti i clienti e li scrive nella combo box
-		ArrayList<ArrayList> o = qm.makeQuery("SELECT nome, cognome FROM Clienti");
-		for(int i=1; i <= o.size()-1; i++) {
-			comboBoxListaClienti.addItem(QueryMaker.format(o.get(i)));
-		}
 		//Ultimo item, rappresenta l'inserimento di un nuovo cliente
 		comboBoxListaClienti.addItem("--NUOVO--");
-		
-		JLabel lblVisita = new JLabel("Data:");
-		lblVisita.setBounds(12, 72, 70, 15);
-		contentPane.add(lblVisita);
-		
-		textFieldData = new JTextField();
-		textFieldData.setBounds(22, 93, 114, 19);
-		contentPane.add(textFieldData);
-		textFieldData.setColumns(10);
-		
-		JLabel lblOraIngresso = new JLabel("Ora Ingresso:");
-		lblOraIngresso.setBounds(12, 124, 99, 15);
-		contentPane.add(lblOraIngresso);
-		
-		textFieldOraIngresso = new JTextField();
-		textFieldOraIngresso.setBounds(22, 142, 114, 19);
-		contentPane.add(textFieldOraIngresso);
-		textFieldOraIngresso.setColumns(10);
-		
-		JLabel lblOraUscita = new JLabel("Ora Uscita:");
-		lblOraUscita.setBounds(12, 173, 99, 15);
-		contentPane.add(lblOraUscita);
-		
-		textFieldOraUscita = new JTextField();
-		textFieldOraUscita.setBounds(22, 188, 114, 19);
-		contentPane.add(textFieldOraUscita);
-		textFieldOraUscita.setColumns(10);
-		
-		JButton btnOk = new JButton("OK");
-		btnOk.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//Se è stato selezionato nuovo cliente passa alla finestra di aggiunta clienti eliminando la corrente
+		comboBoxListaClienti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				if(comboBoxListaClienti.getSelectedItem().equals("--NUOVO--")) {
 					new NuovoCliente(codMuseo).setVisible(true);
 					dispose();
 				}
-				//Formatta data ingresso, ora ingresso e ora uscita come necessario a SQL
-				String dataOraIngresso, dataOraUscita;
-				dataOraIngresso = textFieldData.getText() + " " + textFieldOraIngresso.getText();
-				dataOraUscita = textFieldData.getText() + " " + textFieldOraUscita.getText();
-				int IDutente = 1 + (comboBoxListaClienti.getSelectedIndex());						
+			}
+		});
+		comboBoxListaClienti.setBounds(81, 7, 202, 24);
+		contentPane.add(comboBoxListaClienti);
+		/*
+		 * Questa query ci permette di salvare tutti i nomi e cognomi dei clienti e inserirli nel comboBox
+		 * */
+		ArrayList<ArrayList> o = qm.makeQuery("SELECT nome, cognome, id FROM Clienti");
+		for(int i=1; i <= o.size()-1; i++) {
+			comboBoxListaClienti.addItem(o.get(i).get(0)+" "+o.get(i).get(1)+" "+o.get(i).get(2));
+		}
+		
+		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				String cliente = (String) (comboBoxListaClienti.getSelectedItem());
+				String[] campiCliente = cliente.split(" ");
+				/*DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+				LocalDate localdate = LocalDate.now();
+				String oggi = dtf.format(localdate);*/
 				try {
-					qm.makeInsertion("INSERT INTO Visita VALUES (" + IDutente + ", \""+codMuseo+"\", '"+dataOraIngresso+"', '"+dataOraUscita+"')");
+					/*
+					 * Questa query ci permette di inserire una nuova visita nella tabella Visita con i dati inseriti
+					 * */
+					qm.makeInsertion("INSERT INTO Visita VALUES (" + campiCliente[2] + ", \""+codMuseo+"\", current_timestamp())");
+					JOptionPane.showMessageDialog(btnOk, "Inserimento avvenuto con successo", "Done!", JOptionPane.INFORMATION_MESSAGE);
+					qm.makeInsertion("UPDATE Musei SET numeroVisite = numeroVisite + 1 WHERE codice = \""+codMuseo+"\"");
 				} catch (SQLException e) {
 					e.printStackTrace();
+					JOptionPane.showMessageDialog(btnOk, "L'elemento è già presente nella mostra", "Error!", JOptionPane.ERROR_MESSAGE);
+
 				}
 			}
 		});
-		btnOk.setBounds(166, 252, 117, 25);
+		btnOk.setBounds(156, 55, 117, 25);
 		contentPane.add(btnOk);
 		
 		JButton btnAnnulla = new JButton("Annulla");
@@ -131,7 +119,7 @@ public class GestioneVisita extends JFrame {
 				dispose();
 			}
 		});
-		btnAnnulla.setBounds(12, 252, 117, 25);
+		btnAnnulla.setBounds(12, 55, 117, 25);
 		contentPane.add(btnAnnulla);
 	}
 }
