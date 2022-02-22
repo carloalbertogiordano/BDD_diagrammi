@@ -7,9 +7,6 @@ public class QueryMaker {
 
     private Connection con;
 
-    /*
-     * Costruttore della classe a cui vengono passate le string URL, USER, PASS per poi inizializzare i driver di connessione
-     * */
     public QueryMaker (String url, String user, String pass) {
         String JdbcURL = url;
         String Username = user;
@@ -24,12 +21,6 @@ public class QueryMaker {
         System.out.println("Connection is successful!!!!!!");
     }
 
-    /*
-     * Passiamo la stringa contenente la query. Si crea lo statement e viene eseguita la query memorizzando il risulato in una variabile
-     * di tipo ResultSetMetaData. Salviamo il numero di colonne restituite dalla query. Il primo elemento dell'arrayList più esterno saranno 
-     * le intestazioni delle tabelle, date dal metodo getColumnName. Successivamente verranno inserti all'interno dell'arrsylist più esterno 
-     * tutti gli arrayList che risultano dalla Query.
-     * */
     public ArrayList makeQuery (String q) throws SQLException {
 
         Statement st = con.createStatement();
@@ -56,12 +47,27 @@ public class QueryMaker {
         return rQuery;
     }
     
-    /*
-     * Questo metodo ci permette di effettuare un inserimento all'interno del database.
-     * Abbiamo bisogno di un metodo separato in quanto le query di inserimento non restituiscono nessun valore
-     * */
     public void makeInsertion (String q) throws SQLException {
     	Statement st = con.createStatement();
-        st.execute(q);
+        st.executeUpdate(q);
+        }
+    
+    public static String toString (ArrayList a) {
+        String s = "";
+        for(int i = 0; i < a.size(); i++){
+            s += format((ArrayList) a.get(i));
+            s += "\n";
+        }
+        return s;
+    }
+
+    public static String format(ArrayList a) {
+        String s = "";
+
+        for (int i = 0; i < a.size(); i++){
+            s += a.get(i);
+            s += "\t";
+        }
+        return s;
     }
 }

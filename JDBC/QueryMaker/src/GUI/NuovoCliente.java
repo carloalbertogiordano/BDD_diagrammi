@@ -1,6 +1,5 @@
 package GUI;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,17 +7,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import queryMaker.QueryMaker;
+import tools.Tools;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class NuovoCliente extends JFrame {
 
+	private static final long serialVersionUID = -3454653050070059158L;
 	private JPanel contentPane;
 	private JTextField textFieldNome;
 	private JTextField textFieldCognome;
@@ -103,6 +103,14 @@ public class NuovoCliente extends JFrame {
 				String nome = textFieldNome.getText();
 				String cognome = textFieldCognome.getText();
 				String ddn = textFieldDdn.getText();
+				
+				if(Tools.dateValidation(ddn)) {
+					new NuovoCliente(codMuseo).setVisible(true);
+					dispose();
+				}
+				
+				
+				
 				try {
 					qm.makeInsertion("INSERT INTO Clienti (nome, cognome, ddnascita) VALUES (\""+nome+"\", \""+cognome+"\", '"+ddn+"');");
 				} catch (SQLException e) {

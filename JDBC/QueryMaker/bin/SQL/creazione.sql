@@ -50,7 +50,6 @@ CREATE TABLE Dipinto (
     dataCreazione INT NOT NULL,
     tecnica VARCHAR (25) NOT NULL,
     ID_Artista INT NOT NULL,
-    strumento varchar (20) NOT NULL,
 	FOREIGN KEY (ID_Artista) REFERENCES Artista(ID),
     PRIMARY KEY(nome, numero)
 );
@@ -66,7 +65,6 @@ CREATE TABLE Scultura (
     dataCreazione INT NOT NULL,
     peso INT NOT NULL,
     ID_Artista INT NOT NULL,
-	strumento varchar (20) NOT NULL,
 	FOREIGN KEY (ID_Artista) REFERENCES Artista(ID),
     PRIMARY KEY(nome, numero)
 );
@@ -87,7 +85,6 @@ CREATE TABLE Altro (
     dataCreazione INT NOT NULL,
     descrizione VARCHAR (1000) NOT NULL,
     ID_Artista INT NOT NULL,
-	strumento varchar (20) NOT NULL,
 	FOREIGN KEY (ID_Artista) REFERENCES Artista(ID),
     PRIMARY KEY(nome, numero)
 );

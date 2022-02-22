@@ -25,10 +25,9 @@ CREATE TABLE Visita (
 	ID_Cliente INT NOT NULL,
     codiceMuseo VARCHAR (20) NOT NULL,
     dataOraIngresso DATETIME NOT NULL,
-    dataOraUscita DATETIME NOT NULL,
-    FOREIGN KEY (ID_Cliente) REFERENCES Clienti(ID),
-    FOREIGN KEY (codiceMuseo) REFERENCES Musei(codice),
-    PRIMARY KEY(ID_Cliente, codiceMuseo, dataOraIngresso, dataOraUscita)
+    FOREIGN KEY (ID_Cliente) REFERENCES Clienti(ID) ON DELETE CASCADE,
+    FOREIGN KEY (codiceMuseo) REFERENCES Musei(codice) ON DELETE CASCADE, 
+    PRIMARY KEY(ID_Cliente, codiceMuseo, dataOraIngresso)
 );
 
 CREATE TABLE Artista (
@@ -50,7 +49,8 @@ CREATE TABLE Dipinto (
     dataCreazione INT NOT NULL,
     tecnica VARCHAR (25) NOT NULL,
     ID_Artista INT NOT NULL,
-	FOREIGN KEY (ID_Artista) REFERENCES Artista(ID),
+    strumento varchar (20) NOT NULL,
+	FOREIGN KEY (ID_Artista) REFERENCES Artista(ID) ON DELETE CASCADE,
     PRIMARY KEY(nome, numero)
 );
 
@@ -65,7 +65,8 @@ CREATE TABLE Scultura (
     dataCreazione INT NOT NULL,
     peso INT NOT NULL,
     ID_Artista INT NOT NULL,
-	FOREIGN KEY (ID_Artista) REFERENCES Artista(ID),
+	strumento varchar (20) NOT NULL,
+	FOREIGN KEY (ID_Artista) REFERENCES Artista(ID) ON DELETE CASCADE,
     PRIMARY KEY(nome, numero)
 );
 
@@ -85,7 +86,8 @@ CREATE TABLE Altro (
     dataCreazione INT NOT NULL,
     descrizione VARCHAR (1000) NOT NULL,
     ID_Artista INT NOT NULL,
-	FOREIGN KEY (ID_Artista) REFERENCES Artista(ID),
+	strumento varchar (20) NOT NULL,
+	FOREIGN KEY (ID_Artista) REFERENCES Artista(ID) ON DELETE CASCADE,
     PRIMARY KEY(nome, numero)
 );
 
@@ -95,8 +97,8 @@ CREATE TABLE MostraDipinto (
 	numeroDipinto INT NOT NULL,
 	dataOraInizio DATETIME NOT NULL,
     dataOraFine DATETIME NOT NULL,
-	FOREIGN KEY (codiceMuseo) REFERENCES Musei(codice),
-	FOREIGN KEY (nomeDipinto, numeroDipinto) REFERENCES Dipinto(nome, numero),
+	FOREIGN KEY (codiceMuseo) REFERENCES Musei(codice) ON DELETE CASCADE,
+	FOREIGN KEY (nomeDipinto, numeroDipinto) REFERENCES Dipinto(nome, numero) ON DELETE CASCADE,
     PRIMARY KEY (codiceMuseo, nomeDipinto, numeroDipinto, dataOraInizio, dataOraFine)
 );
 
@@ -106,8 +108,8 @@ CREATE TABLE MostraScultura (
 	numeroScultura INT NOT NULL,
 	dataOraInizio DATETIME NOT NULL,
     dataOraFine DATETIME NOT NULL,
-	FOREIGN KEY (nomeScultura, numeroScultura) REFERENCES Scultura(nome, numero),
-	FOREIGN KEY (codiceMuseo) REFERENCES Musei(codice),
+	FOREIGN KEY (nomeScultura, numeroScultura) REFERENCES Scultura(nome, numero) ON DELETE CASCADE,
+	FOREIGN KEY (codiceMuseo) REFERENCES Musei(codice) ON DELETE CASCADE,
     PRIMARY KEY (codiceMuseo, nomeScultura, numeroScultura, dataOraInizio, dataOraFine)
 );
 
@@ -117,8 +119,8 @@ CREATE TABLE MostraAltro (
 	numeroAltro INT NOT NULL,
 	dataOraInizio DATETIME NOT NULL,
     dataOraFine DATETIME NOT NULL,
-	FOREIGN KEY (codiceMuseo) REFERENCES Musei(codice),
-	FOREIGN KEY (nomeAltro, numeroAltro) REFERENCES Altro(nome, numero),
+	FOREIGN KEY (codiceMuseo) REFERENCES Musei(codice) ON DELETE CASCADE,
+	FOREIGN KEY (nomeAltro, numeroAltro) REFERENCES Altro(nome, numero) ON DELETE CASCADE,
     PRIMARY KEY (codiceMuseo, nomeAltro, numeroAltro, dataOraInizio, dataOraFine)
 );
 
@@ -126,7 +128,8 @@ CREATE TABLE Comporre (
 	nomeScultura VARCHAR (40) NOT NULL,
     numeroScultura INT NOT NULL,
     ID_Materiale INT NOT NULL,
-	FOREIGN KEY (nomeScultura, numeroScultura) REFERENCES Scultura(nome, numero),
-	FOREIGN KEY (ID_Materiale) REFERENCES Materiali(ID),
+	FOREIGN KEY (nomeScultura, numeroScultura) REFERENCES Scultura(nome, numero) ON DELETE CASCADE,
+	FOREIGN KEY (ID_Materiale) REFERENCES Materiali(ID) ON DELETE CASCADE,
 	PRIMARY KEY (nomeScultura, numeroScultura, ID_Materiale)
 );
+

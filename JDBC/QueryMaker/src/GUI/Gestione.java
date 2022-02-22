@@ -1,31 +1,30 @@
 package GUI;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 import queryMaker.QueryMaker;
+import javax.swing.JScrollBar;
+import javax.swing.JTextArea;
+import java.awt.BorderLayout;
 
 public class Gestione extends JFrame {
 
 	private JPanel contentPane;
-	//Ereditiamo l'oggetto QueryMaker dall'interfaccia di selezione del museo così da non dover creare una nuova istanza inserendo nuovamente URL, UNAME e PASS
 	private static QueryMaker qm = SelezioneMuseo.getQm();
-	private JTable table;
-	private LocalDate currentDate = LocalDate.of(2022, 02, 21);
+
 	/**
 	 * Launch the application.
 	 */
@@ -46,7 +45,8 @@ public class Gestione extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public Gestione(String codMuseo) throws SQLException {		
+	public Gestione(String codMuseo) throws SQLException {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 643, 419);
 		contentPane = new JPanel();
@@ -54,22 +54,9 @@ public class Gestione extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		table = new JTable();
-		
-		/*
-		 * Questa query è composta dall'unione di tre query, ognuna delle quali ci permette di selezionare tutte le mostre future, rispettivamente di
-		 * dipinti, sculture e opere di altro tipo, in base al museo che abbiamo selezionato precedentemente
-		 * */
-		String q = "SELECT m.nome, d.codiceMuseo, d.dataOraInizio, d.dataOraFine FROM MostraDipinto d, Musei m WHERE d.codiceMuseo = \""+codMuseo+"\" "
-				+ "AND d.codiceMuseo = m.codice AND d.dataOraFine < current_timestamp() GROUP BY d.codiceMuseo, d.dataOraInizio, d.dataOraFine \n"
-				+ "UNION \n"
-				+ "SELECT m.nome, s.codiceMuseo, s.dataOraInizio, s.dataOraFine FROM MostraScultura s, Musei m WHERE s.codiceMuseo = \""+codMuseo+"\" "
-				+ "AND s.codiceMuseo = m.codice AND s.dataOraFine < current_timestamp() GROUP BY s.codiceMuseo, s.dataOraInizio, s.dataOraFine \n"
-				+ "UNION \n"
-				+ "SELECT m.nome, a.codiceMuseo, a.dataOraInizio, a.dataOraFine FROM MostraAltro a, Musei m WHERE a.codiceMuseo = \""+codMuseo+"\" "
-				+ "AND a.codiceMuseo = m.codice AND a.dataOraFine < current_timestamp() GROUP BY a.codiceMuseo, a.dataOraInizio, a.dataOraFine;";
-		
-		ArrayList<ArrayList> o = qm.makeQuery(q);
+		JLabel label = new JLabel("");
+		label.setBounds(125, 0, 403, 25);
+		contentPane.add(label);
 		
 		JButton btnGestioneVisite = new JButton("Gestione Visite");
 		btnGestioneVisite.addActionListener(new ActionListener() {
@@ -86,11 +73,10 @@ public class Gestione extends JFrame {
 		btnGestioneVisite.setBounds(12, 38, 142, 25);
 		contentPane.add(btnGestioneVisite);
 		
-		JButton btnGestioneMostre = new JButton("Inerimento Mostra");
+		JButton btnGestioneMostre = new JButton("Gestione Mostre");
 		btnGestioneMostre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					//richiama la finestra per l'inserimento di una nuova mostra
 					new GestioneMostre(codMuseo).setVisible(true);
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -102,50 +88,36 @@ public class Gestione extends JFrame {
 		contentPane.add(btnGestioneMostre);
 		
 		JPanel panel = new JPanel();
-		DefaultTableModel model = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-               //all cells false
-               return false;
-            }
-        };
-		
-        /*
-         * controllo che non sia stata selzionata la riga con le intestazioni di colonna oppure che non sia stata selezionata nessuna riga
-         * */
-		JButton btnInseirsciOperaIn = new JButton("Inseirsci opera in una mostra");
-		btnInseirsciOperaIn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int row=table.getSelectedRow();
-				int numrowselected=table.getSelectedRowCount();
-				if(row != 0 && numrowselected == 1) {
-					InserimentoOperaMostra.main(o.get(table.getSelectedRow()));
-				}
-			}
-		});
-		
-		btnInseirsciOperaIn.setBounds(364, 38, 267, 25);
-		contentPane.add(btnInseirsciOperaIn);
-		panel.setBounds(12, 75, 619, 232);
+		panel.setBounds(22, 75, 534, 216);
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
+		//Ricerca quali mostre sono o saranno in esposizione e le mostra
+		JTextArea textArea = new JTextArea();
+		textArea.setText("MOSTRE SCULTURE:\nData inizio   Ora inizio   Data fine     Ora fine\n");
+		textArea.setText(textArea.getText() + "\n\nMOSTRE DIPINTI:\nData inizio   Ora inizio   Data fine     Ora fine\n");
+		textArea.setText(textArea.getText() + "\n\nMOSTRE ALTRO:\nData inizio   Ora inizio   Data fine     Ora fine\n");
+		String q = "Select M.dataOraInizio, M.dataOraFine from MostraScultura M where M.codiceMuseo = \"" + codMuseo + "\" AND M.dataOraInizio >= now() group by M.codiceMuseo, M.dataOraInizio, M.dataOraFine";
+		ArrayList<ArrayList> o = qm.makeQuery(q);
+		for(int i=1; i <= o.size()-1; i++) {
+			textArea.append(QueryMaker.format(o.get(i))+ "\n");
+		}
+		q = "Select M.dataOraInizio, M.dataOraFine from MostraDipinto M where M.codiceMuseo = \"" + codMuseo + "\" AND M.dataOraInizio >= now() group by M.codiceMuseo, M.dataOraInizio, M.dataOraFine";
+		o = qm.makeQuery(q);
+		for(int i=1; i <= o.size()-1; i++) {
+			textArea.append(QueryMaker.format(o.get(i))+ "\n");
+		}
+		q = "Select M.dataOraInizio, M.dataOraFine from MostraAltro M where M.codiceMuseo = \"" + codMuseo + "\" AND M.dataOraInizio >= now() group by M.codiceMuseo, M.dataOraInizio, M.dataOraFine";
+		o = qm.makeQuery(q);
+		for(int i=1; i <= o.size()-1; i++) {
+			textArea.append(QueryMaker.format(o.get(i))+ "\n");
+		}
 		
-		panel.add(table, BorderLayout.CENTER);
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		panel.add(scrollPane);
 		
-		table.setModel(model);
 		
-		Vector<String> tmp1 = new Vector<String>(o.get(0));
-		
-	    for(int i = 0; i < o.get(0).size(); i++) {
-	       	model.addColumn(tmp1.get(i));
-	    }
-	    
-        for(int j=0;j<= o.size()-1;j++) {
-        	Vector<String> tmp = new Vector<String>(o.get(j));
-	       	model.addRow(tmp);
-	    }
-		
-		JButton btnAnnulla = new JButton("Indietro");
+		JButton btnAnnulla = new JButton("Annulla");
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Richiama la finestra precedente
@@ -156,15 +128,5 @@ public class Gestione extends JFrame {
 		
 		btnAnnulla.setBounds(12, 320, 117, 25);
 		contentPane.add(btnAnnulla);
-		
-		/*
-		 * Questa query ci permette di visualizzare il numero di visite odierne di ogni museo
-		 * */
-		ArrayList<ArrayList> numVisite = qm.makeQuery("SELECT numeroVisite FROM Musei WHERE codice = \""+codMuseo+"\"");
-		
-		
-		JLabel lblNumeroVisiteOdierne = new JLabel("Numero visite odierne: "+numVisite.get(1).get(0));
-		lblNumeroVisiteOdierne.setBounds(318, 325, 225, 15);
-		contentPane.add(lblNumeroVisiteOdierne);
 	}
 }
