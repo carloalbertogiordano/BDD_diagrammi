@@ -61,13 +61,13 @@ public class Gestione extends JFrame {
 		 * dipinti, sculture e opere di altro tipo, in base al museo che abbiamo selezionato precedentemente
 		 * */
 		String q = "SELECT m.nome, d.codiceMuseo, d.dataOraInizio, d.dataOraFine FROM MostraDipinto d, Musei m WHERE d.codiceMuseo = \""+codMuseo+"\" "
-				+ "AND d.codiceMuseo = m.codice AND d.dataOraFine < current_timestamp() GROUP BY d.codiceMuseo, d.dataOraInizio, d.dataOraFine \n"
+				+ "AND d.codiceMuseo = m.codice AND d.dataOraFine > current_timestamp() GROUP BY d.codiceMuseo, d.dataOraInizio, d.dataOraFine \n"
 				+ "UNION \n"
 				+ "SELECT m.nome, s.codiceMuseo, s.dataOraInizio, s.dataOraFine FROM MostraScultura s, Musei m WHERE s.codiceMuseo = \""+codMuseo+"\" "
-				+ "AND s.codiceMuseo = m.codice AND s.dataOraFine < current_timestamp() GROUP BY s.codiceMuseo, s.dataOraInizio, s.dataOraFine \n"
+				+ "AND s.codiceMuseo = m.codice AND s.dataOraFine > current_timestamp() GROUP BY s.codiceMuseo, s.dataOraInizio, s.dataOraFine \n"
 				+ "UNION \n"
 				+ "SELECT m.nome, a.codiceMuseo, a.dataOraInizio, a.dataOraFine FROM MostraAltro a, Musei m WHERE a.codiceMuseo = \""+codMuseo+"\" "
-				+ "AND a.codiceMuseo = m.codice AND a.dataOraFine < current_timestamp() GROUP BY a.codiceMuseo, a.dataOraInizio, a.dataOraFine;";
+				+ "AND a.codiceMuseo = m.codice AND a.dataOraFine > current_timestamp() GROUP BY a.codiceMuseo, a.dataOraInizio, a.dataOraFine;";
 		
 		ArrayList<ArrayList> o = qm.makeQuery(q);
 		

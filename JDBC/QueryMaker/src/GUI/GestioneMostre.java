@@ -259,50 +259,54 @@ public class GestioneMostre extends JFrame {
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String dataInizio = x.format(dateChooser.getDate());
-				String dataFine = x.format(dateChooser_1.getDate());
-
-				String nomeOpera = (String) comboBoxOpera.getSelectedItem();
-				nomeOpera = Tools.normalizeString(nomeOpera);
-				String numeroOpera = (String) comboBoxNumero.getSelectedItem();
-				numeroOpera = Tools.normalizeString(numeroOpera);
-				if(comboBoxMostra.getSelectedIndex() == 0) {
-					try {
+				if(comboBoxMinutiInizio.getSelectedItem() != null && comboBoxMinutiFine.getSelectedItem() != null) {
+					String dataInizio = x.format(dateChooser.getDate());
+					String dataFine = x.format(dateChooser_1.getDate());
+					String nomeOpera = (String) comboBoxOpera.getSelectedItem();
+					nomeOpera = Tools.normalizeString(nomeOpera);
+					String numeroOpera = (String) comboBoxNumero.getSelectedItem();
+					numeroOpera = Tools.normalizeString(numeroOpera);
+					if(comboBoxMostra.getSelectedIndex() == 0) {
+						try {
 						/*
 						 * Questa query ci permette di inserire una nuova mostra di dipinti nella teballa MostraDipinto, con i campi relativi ad un'opera
 						 * specifica
 						 * */
-						qm.makeInsertion("INSERT INTO MostraDipinto VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataInizio+"', '"+dataFine+"');");
-						JOptionPane.showMessageDialog(btnAggiungi, "Inserimento avvenuto con successo", "Done!", JOptionPane.INFORMATION_MESSAGE);
-					} catch (SQLException e) {
-						JOptionPane.showMessageDialog(btnAggiungi, "Errore durante l'inserimento: controllare che i campi siano tutti inseriti correttamente o che non esista già una mostra con gli stessi valori", "Error!", JOptionPane.ERROR_MESSAGE);
+							qm.makeInsertion("INSERT INTO MostraDipinto VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataInizio+"', '"+dataFine+"');");
+							JOptionPane.showMessageDialog(btnAggiungi, "Inserimento avvenuto con successo", "Done!", JOptionPane.INFORMATION_MESSAGE);
+						} catch (SQLException e) {
+							JOptionPane.showMessageDialog(btnAggiungi, "Errore durante l'inserimento: controllare che i campi siano tutti inseriti correttamente o che non esista già una mostra con gli stessi valori", "Error!", JOptionPane.ERROR_MESSAGE);
+						}
 					}
-				}
-				if(comboBoxMostra.getSelectedIndex() == 1) {
-					try {
+					if(comboBoxMostra.getSelectedIndex() == 1) {
+						try {
 						/*
 						 * Questa query ci permette di inserire una nuova mostra di sculture nella teballa MostraScultura, con i campi relativi ad un'opera
 						 * specifica
 						 * */
-						qm.makeInsertion("INSERT INTO MostraScultura VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataInizio+"', '"+dataFine+"');");
-						JOptionPane.showMessageDialog(btnAggiungi, "Inserimento avvenuto con successo", "Done!", JOptionPane.INFORMATION_MESSAGE);
-					} catch (SQLException e) {
-						JOptionPane.showMessageDialog(btnAggiungi, "Errore durante l'inserimento: controllare che i campi siano tutti inseriti correttamente o che non esista già una mostra con gli stessi valori", "Error!", JOptionPane.ERROR_MESSAGE);
+							qm.makeInsertion("INSERT INTO MostraScultura VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataInizio+"', '"+dataFine+"');");
+							JOptionPane.showMessageDialog(btnAggiungi, "Inserimento avvenuto con successo", "Done!", JOptionPane.INFORMATION_MESSAGE);
+						} catch (SQLException e) {
+							JOptionPane.showMessageDialog(btnAggiungi, "Errore durante l'inserimento: controllare che i campi siano tutti inseriti correttamente o che non esista già una mostra con gli stessi valori", "Error!", JOptionPane.ERROR_MESSAGE);
+						}
 					}
-				}
-				if(comboBoxMostra.getSelectedIndex() == 2) {
-					try {
+					if(comboBoxMostra.getSelectedIndex() == 2) {
+						try {
 						/*
 						 * Questa query ci permette di inserire una nuova mostra di opere di altro tipo nella teballa MostraAltro, con i campi relativi ad un'opera
 						 * specifica
 						 * */
-						qm.makeInsertion("INSERT INTO MostraAltro VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataInizio+"', '"+dataFine+"');");
-						JOptionPane.showMessageDialog(btnAggiungi, "Inserimento avvenuto con successo", "Done!", JOptionPane.INFORMATION_MESSAGE);
-					} catch (SQLException e) {
-						JOptionPane.showMessageDialog(btnAggiungi, "Errore durante l'inserimento: controllare che i campi siano tutti inseriti correttamente o che non esista già una mostra con gli stessi valori", "Error!", JOptionPane.ERROR_MESSAGE);
+							qm.makeInsertion("INSERT INTO MostraAltro VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numeroOpera+", '"+dataInizio+"', '"+dataFine+"');");
+							JOptionPane.showMessageDialog(btnAggiungi, "Inserimento avvenuto con successo", "Done!", JOptionPane.INFORMATION_MESSAGE);
+						} catch (SQLException e) {
+							JOptionPane.showMessageDialog(btnAggiungi, "Errore durante l'inserimento: controllare che i campi siano tutti inseriti correttamente o che non esista già una mostra con gli stessi valori", "Error!", JOptionPane.ERROR_MESSAGE);
+						}
 					}
-				}
 
+				}
+				else {
+					JOptionPane.showMessageDialog(btnAggiungi, "Selezionare I campi mancanti", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		btnAggiungi.setBounds(159, 318, 117, 25);
