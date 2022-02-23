@@ -22,7 +22,7 @@ public class SelezioneMuseo extends JFrame {
 	static ArrayList<ArrayList> arr = null; //arrayList di arrayList che conterrà il risultato della query
 	static String codMuseo;
 	//Connesisone al database
-	protected static QueryMaker qm = new QueryMaker("jdbc:mysql://localhost/DBMuseo", "userMuseo", "2001");
+	protected static QueryMaker qm = new QueryMaker("jdbc:mysql://localhost/DBMuseo", "root", "a^%!mq7EB9n^eX");
 
 	/**
 	 * Launch the application.
