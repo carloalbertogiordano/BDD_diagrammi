@@ -215,7 +215,6 @@ public class InserimentoOperaMostra {
 							qm.makeInsertion("INSERT INTO MostraDipinto VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numOp+", '"+dataOraInizio+"', '"+dataOraFine+"');");
 							JOptionPane.showMessageDialog(btnAggiungi, "Inserimento avvenuto con successo", "Done!", JOptionPane.INFORMATION_MESSAGE);
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
 							JOptionPane.showMessageDialog(btnAggiungi, "L'elemento è già presente nella mostra", "Error!", JOptionPane.ERROR_MESSAGE);
 						}
 					}
@@ -228,7 +227,6 @@ public class InserimentoOperaMostra {
 							qm.makeInsertion("INSERT INTO MostraScultura VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
 							JOptionPane.showMessageDialog(btnAggiungi, "Inserimento avvenuto con successo", "Done!", JOptionPane.INFORMATION_MESSAGE);
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
 							JOptionPane.showMessageDialog(btnAggiungi, "L'elemento è già presente nella mostra", "Error!", JOptionPane.ERROR_MESSAGE);
 						}
 					}
@@ -241,7 +239,6 @@ public class InserimentoOperaMostra {
 							qm.makeInsertion("INSERT INTO MostraAltro VALUES (\""+codMuseo+"\", \""+nomeOpera+"\", "+numOpera+", '"+dataOraInizio+"', '"+dataOraFine+"');");
 							JOptionPane.showMessageDialog(btnAggiungi, "Inserimento avvenuto con successo", "Done!", JOptionPane.INFORMATION_MESSAGE);
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
 							JOptionPane.showMessageDialog(btnAggiungi, "L'elemento è già presente nella mostra", "Error!", JOptionPane.ERROR_MESSAGE);
 						}
 					}
