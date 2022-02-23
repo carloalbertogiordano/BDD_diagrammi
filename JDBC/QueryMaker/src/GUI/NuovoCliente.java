@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import queryMaker.QueryMaker;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -105,8 +106,9 @@ public class NuovoCliente extends JFrame {
 				String ddn = textFieldDdn.getText();
 				try {
 					qm.makeInsertion("INSERT INTO Clienti (nome, cognome, ddnascita) VALUES (\""+nome+"\", \""+cognome+"\", '"+ddn+"');");
+					JOptionPane.showMessageDialog(btnOk, "Inserimento avvenuto con successo", "Done!", JOptionPane.INFORMATION_MESSAGE);
 				} catch (SQLException e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(btnOk, "Errore nell inserimento", "Error!", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});

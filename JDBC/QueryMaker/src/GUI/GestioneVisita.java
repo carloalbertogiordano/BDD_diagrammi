@@ -87,9 +87,7 @@ public class GestioneVisita extends JFrame {
 
 				String cliente = (String) (comboBoxListaClienti.getSelectedItem());
 				String[] campiCliente = cliente.split(" ");
-				/*DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-				LocalDate localdate = LocalDate.now();
-				String oggi = dtf.format(localdate);*/
+
 				try {
 					/*
 					 * Questa query ci permette di inserire una nuova visita nella tabella Visita con i dati inseriti
